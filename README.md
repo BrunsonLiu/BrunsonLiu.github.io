@@ -1,3 +1,3 @@
 <<<<<<< HEAD
 # brunson.github.io
-Hi !
+Hi !失败的主页搭建
