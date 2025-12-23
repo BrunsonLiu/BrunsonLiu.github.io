@@ -26,17 +26,21 @@ h2 {
   --brand: #8ab4f8;
   --surface: rgba(255,255,255,0.06);
   --surface-hover: rgba(255,255,255,0.10);
+  --gradient-from: #22d3ee;
+  --gradient-to: #3b82f6;
 }
 
 html[data-theme="light"] {
-  --bg: #fbfbfd; /* Apple-like neutral light */
-  --bg-accent-1: rgba(0,0,0,0.04);
-  --bg-accent-2: rgba(0,0,0,0.03);
-  --text: #0b0f19;
-  --muted: #475569;
+  --bg: #f8fafc; /* 更柔和的浅灰白 */
+  --bg-accent-1: rgba(59,130,246,0.06);
+  --bg-accent-2: rgba(99,102,241,0.04);
+  --text: #1e293b;
+  --muted: #64748b;
   --brand: #2563eb;
-  --surface: rgba(0,0,0,0.04);
-  --surface-hover: rgba(0,0,0,0.07);
+  --surface: rgba(255,255,255,0.8);
+  --surface-hover: rgba(255,255,255,0.95);
+  --gradient-from: #0891b2;
+  --gradient-to: #1d4ed8;
 }
 
 body {
@@ -56,9 +60,22 @@ h2 { color: var(--brand); }
 .link:hover { color: var(--brand); }
 
 /* Cards */
-.card { background: var(--surface); border: 1px solid rgba(255,255,255,0.06); border-radius: 1rem; }
-html[data-theme="light"] .card { border-color: rgba(0,0,0,0.06); }
+.card { background: var(--surface); border: 1px solid rgba(255,255,255,0.08); border-radius: 1rem; }
+html[data-theme="light"] .card { 
+  background: rgba(255,255,255,0.9); 
+  border-color: rgba(0,0,0,0.06); 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+}
 .card-hover:hover { background: var(--surface-hover); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+html[data-theme="light"] .card-hover:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.12); }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
 /* Typography for markdown content */
 .prose {

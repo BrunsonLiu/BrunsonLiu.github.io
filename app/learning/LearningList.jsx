@@ -14,13 +14,24 @@ export default function LearningList({ notes }) {
   return (
     <>
       <div className="mb-6">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search notes..." className="w-full rounded-xl bg-white/10 px-4 py-2 text-white placeholder-gray-400 outline-none" />
+        <input 
+          value={q} 
+          onChange={(e) => setQ(e.target.value)} 
+          placeholder="Search notes..." 
+          className="w-full rounded-xl px-4 py-2 outline-none transition card"
+          style={{ color: "var(--text)" }}
+        />
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {results.map((n) => (
-          <Link key={n.slug} href={`/learning/${n.slug}`} className="block bg-white/5 rounded-2xl p-5 hover:bg-white/10 transition">
-            <h3 className="text-cyan-300 font-medium">{n.meta.title || n.slug}</h3>
-            <p className="text-gray-400 text-sm mt-2 line-clamp-2">{n.meta.description || ""}</p>
+          <Link 
+            key={n.slug} 
+            href={`/learning/${n.slug}`} 
+            className="block card p-5 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
+            style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
+          >
+            <h3 className="font-medium" style={{ color: "var(--brand)" }}>{n.meta.title || n.slug}</h3>
+            <p className="text-sm mt-2 line-clamp-2" style={{ color: "var(--muted)" }}>{n.meta.description || ""}</p>
           </Link>
         ))}
       </div>
