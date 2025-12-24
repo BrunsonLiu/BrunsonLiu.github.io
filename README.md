@@ -1,3 +1,3 @@
 <<<<<<< HEAD
-# brunson.github.io
-Hi !失败的主页搭建
+# 我的主页
+https://brunsonliu.github.io/
