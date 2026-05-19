@@ -1,98 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 @import "tailwindcss";
+
+/* ========================================
+   1. Design Tokens — Digital Personal Universe
+   ======================================== */
+
+:root {
+  --bg: #0a0a0a;
+  --text: #e8e8e8;
+  --muted: #666666;
+  --brand: #e63946;
+  --accent: #c8c8c8;
+  --surface: #141414;
+  --surface-hover: #1c1c1c;
+  --surface-border: #222222;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-reading: 'Crimson Pro', Georgia, serif;
+
+  --spacing-unit: 8px;
+  --spacing-section: 8rem;
+  --spacing-container: 2rem;
+  --max-width: 1200px;
+  --reading-width: 680px;
+
+  --radius: 0px;
+
+  --duration-fast: 0.15s;
+  --duration-normal: 0.3s;
+  --duration-slow: 0.6s;
+  --duration-space: 0.8s;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shadow-frame: 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* ========================================
+   2. Five Spaces — Color Palettes
+   ======================================== */
+
+.space-academic {
+  --sp-bg: #0a0a0a;
+  --sp-text: #e8e8e8;
+  --sp-muted: #666666;
+  --sp-accent: #c8c8c8;
+  --sp-brand: #e63946;
+  --sp-surface: #141414;
+  --sp-surface-border: #222222;
+  --sp-grain: 0.03;
+  --sp-font: var(--font-sans);
+  --sp-rhythm: slow;
+  color: var(--sp-text);
+  background: var(--sp-bg);
+  font-family: var(--sp-font);
+  transition: background var(--duration-space) var(--ease-in-out), color var(--duration-space) var(--ease-in-out);
+}
+
+.space-literature {
+  --sp-bg: #1a1714;
+  --sp-text: #d4c5a9;
+  --sp-muted: #8a7e6b;
+  --sp-accent: #c9a96e;
+  --sp-brand: #8b4513;
+  --sp-surface: #211e19;
+  --sp-surface-border: #332e26;
+  --sp-grain: 0.06;
+  --sp-font: var(--font-reading);
+  color: var(--sp-text);
+  background: var(--sp-bg);
+  font-family: var(--sp-font);
+  transition: background var(--duration-space) var(--ease-in-out), color var(--duration-space) var(--ease-in-out);
+}
+
+.space-athletic {
+  --sp-bg: #050505;
+  --sp-text: #ffffff;
+  --sp-muted: #555555;
+  --sp-accent: #ff3b30;
+  --sp-brand: #ffffff;
+  --sp-surface: #0d0d0d;
+  --sp-surface-border: #1a1a1a;
+  --sp-grain: 0.02;
+  --sp-font: var(--font-display);
+  color: var(--sp-text);
+  background: var(--sp-bg);
+  font-family: var(--sp-font);
+  transition: background var(--duration-space) var(--ease-in-out), color var(--duration-space) var(--ease-in-out);
+}
+
+.space-voyage {
+  --sp-bg: #111419;
+  --sp-text: #c8bda0;
+  --sp-muted: #7a7568;
+  --sp-accent: #c9a96e;
+  --sp-brand: #6b8fad;
+  --sp-surface: #181d24;
+  --sp-surface-border: #2a2f38;
+  --sp-grain: 0.03;
+  --sp-font: var(--font-sans);
+  --sp-ocean: #5b7e9a;
+  --sp-grass: #6b7e5a;
+  --sp-sand: #c4b99a;
+  --sp-fog: #8a8578;
+  --sp-gold: #d4a843;
+  color: var(--sp-text);
+  background: var(--sp-bg);
+  font-family: var(--sp-font);
+  transition: background var(--duration-space) var(--ease-in-out), color var(--duration-space) var(--ease-in-out);
+}
+
+.space-reflection {
+  --sp-bg: #0a0a0a;
+  --sp-text: #b0b0b0;
+  --sp-muted: #555555;
+  --sp-accent: #888888;
+  --sp-brand: #e63946;
+  --sp-surface: #111111;
+  --sp-surface-border: #1e1e1e;
+  --sp-grain: 0.04;
+  --sp-font: var(--font-sans);
+  color: var(--sp-text);
+  background: var(--sp-bg);
+  font-family: var(--sp-font);
+  transition: background var(--duration-space) var(--ease-in-out), color var(--duration-space) var(--ease-in-out);
+}
+
+/* ========================================
+   3. Base Styles
+   ======================================== */
 
 html {
   scroll-behavior: smooth;
-}
-
-section {
-  padding: 6rem 1.5rem;
-}
-
-h2 {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: #8ab4f8; /* lighter academic blue */
-  margin-bottom: 1rem;
-}
-
-/* Minimal, premium background pattern (subtle dots) */
-/* Theme variables */
-:root {
-  --bg: #0e1422;
-  --bg-accent-1: rgba(49,60,85,0.45);
-  --bg-accent-2: rgba(31,41,55,0.45);
-  --text: #e5e7eb;
-  --muted: #cbd5e1;
-  --brand: #8ab4f8;
-  --surface: rgba(255,255,255,0.06);
-  --surface-hover: rgba(255,255,255,0.10);
-  --gradient-from: #22d3ee;
-  --gradient-to: #3b82f6;
-}
-
-html[data-theme="light"] {
-  --bg: #f8fafc; /* 更柔和的浅灰白 */
-  --bg-accent-1: rgba(59,130,246,0.06);
-  --bg-accent-2: rgba(99,102,241,0.04);
-  --text: #1e293b;
-  --muted: #64748b;
-  --brand: #2563eb;
-  --surface: rgba(255,255,255,0.8);
-  --surface-hover: rgba(255,255,255,0.95);
-  --gradient-from: #0891b2;
-  --gradient-to: #1d4ed8;
+  font-family: var(--font-sans);
 }
 
 body {
   color: var(--text);
-  background: radial-gradient(1200px 600px at 10% -10%, var(--bg-accent-1), transparent 60%),
-              radial-gradient(1200px 600px at 90% 110%, var(--bg-accent-2), transparent 60%),
-              linear-gradient(180deg, var(--bg), var(--bg) 40%, var(--bg) 100%);
+  background: var(--bg);
+  min-height: 100vh;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h2 { color: var(--brand); }
-
-.surface { background: var(--surface); }
-.surface:hover { background: var(--surface-hover); }
-
-/* Links themed */
-.link { color: inherit; transition: color .2s ease; }
-.link:hover { color: var(--brand); }
-
-/* Cards */
-.card { background: var(--surface); border: 1px solid rgba(255,255,255,0.08); border-radius: 1rem; }
-html[data-theme="light"] .card { 
-  background: rgba(255,255,255,0.9); 
-  border-color: rgba(0,0,0,0.06); 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
-}
-.card-hover:hover { background: var(--surface-hover); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-html[data-theme="light"] .card-hover:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.12); }
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
-/* Typography for markdown content */
+::selection {
+  background: var(--brand);
+  color: #fff;
+}
+
+/* ========================================
+   4. Shared Components
+   ======================================== */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius);
+  transition: border-color var(--duration-normal) var(--ease-out);
+}
+
+.card-hover:hover {
+  border-color: var(--text);
+}
+
+.link {
+  color: inherit;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.link:hover {
+  color: var(--brand);
+}
+
+/* ========================================
+   5. Prose / Reading
+   ======================================== */
+
 .prose {
-  --tw-prose-body: #cbd5e1; /* slate-300 */
-  --tw-prose-headings: #e5e7eb; /* gray-200 */
-  --tw-prose-links: #8ab4f8;
-  --tw-prose-bold: #e5e7eb;
-  --tw-prose-quotes: #94a3b8;
-  --tw-prose-code: #e2e8f0;
+  --tw-prose-body: var(--muted);
+  --tw-prose-headings: var(--text);
+  --tw-prose-links: var(--brand);
+  --tw-prose-bold: var(--text);
+  --tw-prose-quotes: var(--muted);
+  --tw-prose-code: var(--muted);
 }
 
-.prose h1 { font-size: 1.875rem; line-height: 1.25; margin-bottom: 1rem; }
-.prose h2 { font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.75rem; }
-.prose p { line-height: 1.85; margin: 0.75rem 0; }
+.prose h1 { font-size: 2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+.prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; }
+.prose p { line-height: 1.75; margin: 0.75rem 0; }
 .prose ul, .prose ol { margin: 0.75rem 0 1rem; padding-left: 1.25rem; }
 .prose li { margin: 0.25rem 0; }
-.prose code { background: rgba(148,163,184,0.15); padding: 0.15rem 0.35rem; border-radius: 0.35rem; }
-.prose pre { background: rgba(2,6,23,0.7); padding: 1rem; border-radius: 0.75rem; overflow: auto; }
-.prose a { text-decoration: none; border-bottom: 1px solid rgba(138,180,248,0.35); }
-.prose a:hover { border-color: rgba(138,180,248,0.7); }
+.prose code { background: rgba(255,255,255,0.08); padding: 0.15rem 0.4rem; border-radius: 0; color: var(--text); font-size: 0.9em; }
+.prose pre { background: var(--surface); padding: 1.25rem; border-radius: 0; overflow: auto; border-left: 2px solid var(--brand); color: var(--text); }
+.prose a { text-decoration: none; border-bottom: 1px solid var(--brand); }
+.prose a:hover { border-color: var(--text); }
+
+.immersive-reading {
+  max-width: var(--reading-width);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.immersive-reading .prose p {
+  line-height: 1.85;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+}
+
+.immersive-reading .prose blockquote {
+  border-left: 3px solid var(--brand);
+  padding-left: 1.5rem;
+  margin: 2.5rem 0;
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--brand);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ========================================
+   6. Motion System
+   ======================================== */
+
+.underline-hover {
+  position: relative;
+}
+
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+.underline-hover:hover::after {
+  width: 100%;
+}
+
+/* ========================================
+   7. Space Transition — Grain Overlay
+   ======================================== */
+
+.space-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9996;
+  mix-blend-mode: overlay;
+  opacity: var(--sp-grain, 0.03);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  transition: opacity var(--duration-space) var(--ease-in-out);
+}
+
+/* ========================================
+   8. Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   9. Legacy Page Theme Compatibility
+   ======================================== */
+
+.page-study, .page-research, .page-diary, .page-hobby,
+.page-internship, .page-competition {
+  --page-bg: var(--sp-bg, #0a0a0a);
+  --page-brand: var(--sp-brand, #e63946);
+  --page-accent: var(--sp-accent, #c8c8c8);
+  --page-muted: var(--sp-muted, #666666);
+  --page-surface: var(--sp-surface, #141414);
+  --page-surface-border: var(--sp-surface-border, #222222);
+  --page-glow: transparent;
+}

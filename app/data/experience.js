@@ -1,0 +1,55 @@
+export const competitions = [
+  {
+    title: "MCM/ICM",
+    subtitle: "美赛 · Finalist",
+    desc: "美国大学生数学建模大赛特等奖提名，全球前1%",
+    tags: ["零膨胀负二项回归", "XGBoost", "贝叶斯优化"],
+    stats: ["Finalist", "全球前1%"],
+    formula: "y ~ ZINB(μ, θ)",
+    insight: "用XGBoost+贝叶斯优化做奥运奖牌预测，模型融合提升精度",
+    note: "三天三夜建模，从奥运奖牌预测到贝叶斯优化，比任何考试都考验团队协作",
+  },
+  {
+    title: "中国运筹学会竞赛",
+    subtitle: "运筹优化 · 队长",
+    desc: "生鲜冷链仓网布局优化，担任队长与核心建模手",
+    tags: ["CPLEX", "MPC", "两阶段随机规划"],
+    stats: ["队长", "核心建模手"],
+    formula: "min Σcᵢⱼxᵢⱼ + E[Q(x,ξ)]",
+    insight: "用两阶段随机规划解决冷链仓网不确定性选址问题",
+    note: "第一次当队长，协调建模、编程、论文三线并行，比解题本身更考验人",
+  },
+  {
+    title: "数维杯国际赛",
+    subtitle: "数学建模 · Finalist",
+    desc: "空间插值与地理数据分析",
+    tags: ["协同克里金", "CNN融合", "空间插值"],
+    stats: ["Finalist", "误差降低3.5%"],
+    formula: "Z(s) = μ(s) + ε(s)",
+    insight: "克里金+CNN融合建模，空间插值误差降低3.5%",
+    note: "协同克里金+CNN融合建模，把地统计学和深度学习结合，效果出奇地好",
+  },
+];
+
+export const internships = [
+  {
+    title: "CXMT",
+    subtitle: "长鑫存储 · 运筹优化算法",
+    desc: "复杂电路多目标黑盒优化，多保真贝叶斯优化 + NSGA2 算法",
+    tags: ["BoTorch", "NSGA2", "贝叶斯优化", "多保真建模"],
+    stats: ["AI部门", "电路优化"],
+    formula: "min f(x) s.t. x∈X",
+    insight: "搭建优化-仿真框架，降低评估成本、提升迭代效率",
+    note: "第一次把优化模型跑在芯片设计数据上，20维参数空间的黑盒优化，比课本里的问题刺激100倍",
+  },
+  {
+    title: "丝宝实业",
+    subtitle: "数据分析",
+    desc: "巨量千川投流优化、用户画像建模、时间序列预测",
+    tags: ["STL分解", "K-means", "ARIMA", "GARCH"],
+    stats: ["投流优化", "用户画像"],
+    formula: "y(t) = T(t) + S(t) + R(t)",
+    insight: "用STL分解定位转化节点，K-means做用户分群，ARIMA+GARCH预测会员增长",
+    note: "数据分析的本质不是跑模型，而是理解业务——让决策者看到数据背后的故事",
+  },
+];

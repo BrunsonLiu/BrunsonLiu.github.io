@@ -1,136 +1,75 @@
-"use client";
-import { motion, AnimatePresence } from "framer-motion";
+﻿"use client";
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaSun, FaMoon } from "react-icons/fa";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/learning", label: "Learning" },
-  { href: "/research", label: "Research" },
-  { href: "/internship", label: "Internship" },
-  { href: "/diary", label: "Diary" },
-  { href: "/search", label: "Search" },
-  { href: "/contact", label: "Contact" },
+const spaces = [
+  { name: "学术", href: "/", className: "space-academic" },
+  { name: "文学", href: "/literature", className: "space-literature" },
+  { name: "运动", href: "/athletic", className: "space-athletic" },
+  { name: "旷野", href: "/voyage", className: "space-voyage" },
+  { name: "沉思", href: "/reflection", className: "space-reflection" },
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("dark");
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const saved = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
-    const initial = saved === "light" ? "light" : "dark";
-    setTheme(initial);
-    if (typeof document !== "undefined") {
-      if (initial === "light") document.documentElement.setAttribute("data-theme", "light");
-      else document.documentElement.removeAttribute("data-theme");
-    }
+    setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    if (typeof document !== "undefined") {
-      if (next === "light") document.documentElement.setAttribute("data-theme", "light");
-      else document.documentElement.removeAttribute("data-theme");
-    }
-    if (typeof window !== "undefined") {
-      localStorage.setItem("theme", next);
-    }
-  };
-
   return (
-    <motion.nav
-      className="fixed top-0 w-full flex justify-between items-center px-6 py-3 backdrop-blur-xl z-50"
-      style={{ background: "var(--surface)" }}
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8 }}
+    <header
+      className="fixed top-0 left-0 right-0 z-40 transition-all duration-500"
+      style={{
+        background: scrolled ? "rgba(10,10,10,0.92)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
+      }}
     >
-      {/* Logo / Brand */}
-      <a href="/" className="text-xl font-bold" style={{ color: "var(--brand)" }}>
-        Brunson
-      </a>
+      <nav className="max-w-[1200px] mx-auto px-6 lg:px-8 h-12 flex items-center justify-between">
+        <Link href="/" className="text-sm font-bold tracking-tight" style={{ color: "var(--text)" }}>
+          Brunson
+        </Link>
 
-      {/* Desktop Menu */}
-      <div className="hidden md:flex items-center gap-6">
-        <ul className="flex gap-6 text-base font-medium">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a 
-                href={link.href} 
-                className="transition hover:opacity-70"
-                style={{ color: "var(--text)" }}
+        <div className="flex items-center gap-6">
+          {spaces.map((space) => {
+            const isActive = pathname === space.href ||
+              (space.href !== "/" && pathname.startsWith(space.href));
+            return (
+              <Link
+                key={space.name}
+                href={space.href}
+                className="relative text-[11px] font-medium uppercase tracking-[0.2em] transition-opacity duration-300"
+                style={{
+                  color: isActive ? "var(--text)" : "var(--muted)",
+                  opacity: isActive ? 1 : 0.5,
+                }}
               >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-        
-        {/* Theme Toggle - Desktop */}
-        <button
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-          className="p-2 rounded-lg transition hover:opacity-70"
-          style={{ color: "var(--brand)" }}
-        >
-          {theme === "dark" ? <FaSun size={18} /> : <FaMoon size={18} />}
-        </button>
-      </div>
+                {space.name}
+                {isActive && (
+                  <span
+                    className="absolute -bottom-1 left-0 right-0 h-px"
+                    style={{ background: "var(--brand)" }}
+                  />
+                )}
+              </Link>
+            );
+          })}
 
-      {/* Mobile Controls */}
-      <div className="md:hidden flex items-center gap-3">
-        {/* Theme Toggle - Mobile */}
-        <button
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-          className="p-2 rounded-lg"
-          style={{ color: "var(--brand)" }}
-        >
-          {theme === "dark" ? <FaSun size={18} /> : <FaMoon size={18} />}
-        </button>
-        
-        {/* Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-lg"
-          style={{ color: "var(--brand)" }}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-        </button>
-      </div>
+          <span className="w-px h-3 mx-1" style={{ background: "rgba(255,255,255,0.1)" }} />
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 w-full backdrop-blur-xl md:hidden"
-            style={{ background: "var(--surface)" }}
-          >
-            <ul className="flex flex-col items-center py-4 gap-4">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-lg transition hover:opacity-70"
-                    style={{ color: "var(--text)" }}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+          <a href="mailto:1815751961@qq.com"
+            className="text-[11px] font-medium uppercase tracking-[0.2em] transition-opacity duration-300 hover:opacity-100"
+            style={{ color: "var(--muted)", opacity: 0.5 }}>
+            联系
+          </a>
+        </div>
+      </nav>
+    </header>
   );
 }

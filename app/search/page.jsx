@@ -1,4 +1,4 @@
-import SearchClient from "./searchClient";
+﻿import SearchClient from "./searchClient";
 import { listAllContent } from "../lib/markdown";
 
 export default function SearchPage() {

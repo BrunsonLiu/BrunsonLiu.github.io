@@ -1,0 +1,50 @@
+[
+  {
+    "title": "League of Legends",
+    "subtitle": "英雄联盟",
+    "description": "Strategic MOBA gameplay, teamwork, and continuous improvement",
+    "details": [
+      "Rank: Platinum+",
+      "Main Role: Mid Lane",
+      "Favorite Champions: Yasuo, Zed, Ahri"
+    ],
+    "icon": "gamepad",
+    "theme": { "primary": "#e63946", "secondary": "#f0f0f0" }
+  },
+  {
+    "title": "Stock Trading",
+    "subtitle": "股市交易",
+    "description": "Market analysis, quantitative thinking, and risk management",
+    "details": [
+      "Technical & Fundamental Analysis",
+      "Algorithmic Trading Interest",
+      "Portfolio Management"
+    ],
+    "icon": "trending",
+    "theme": { "primary": "#f0f0f0", "secondary": "#e63946" }
+  },
+  {
+    "title": "Basketball & NBA",
+    "subtitle": "篮球",
+    "description": "Court dynamics, team strategy, and athletic excellence",
+    "details": [
+      "Favorite Team: Lakers",
+      "Playing Position: Point Guard",
+      "Following NBA Since 2015"
+    ],
+    "icon": "basketball",
+    "theme": { "primary": "#e63946", "secondary": "#f0f0f0" }
+  },
+  {
+    "title": "Long Distance Running",
+    "subtitle": "长跑",
+    "description": "Endurance, discipline, and mental toughness",
+    "details": [
+      "Half Marathon PB: 1h 45m",
+      "Weekly Mileage: 30-40km",
+      "Training Philosophy: Consistency over Speed"
+    ],
+    "icon": "running",
+    "theme": { "primary": "#f0f0f0", "secondary": "#e63946" }
+  }
+]

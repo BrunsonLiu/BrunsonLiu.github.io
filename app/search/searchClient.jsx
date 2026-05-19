@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import Fuse from "fuse.js";
 import Link from "next/link";
 import { useMemo, useState } from "react";

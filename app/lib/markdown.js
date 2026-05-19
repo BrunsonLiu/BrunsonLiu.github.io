@@ -1,4 +1,4 @@
-import fs from "fs";
+﻿﻿﻿﻿import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
@@ -22,7 +22,8 @@ export function listMarkdown(dir) {
 }
 
 export async function getMarkdownHtml(dir, slug) {
-  const filePath = path.join(contentRoot, dir, `${slug}.md`);
+  const decodedSlug = decodeURIComponent(slug);
+  const filePath = path.join(contentRoot, dir, `${decodedSlug}.md`);
   const raw = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(raw);
   const processed = await remark().use(html).process(content);
@@ -30,7 +31,7 @@ export async function getMarkdownHtml(dir, slug) {
 }
 
 export function listAllContent() {
-  const categories = ["study", "research", "diary", "internship"];
+  const categories = ["study", "research", "diary", "internship", "competition", "llm-agent"];
   const all = [];
   for (const category of categories) {
     const items = listMarkdown(category);

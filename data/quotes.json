@@ -1,0 +1,114 @@
+[
+  {
+    "id": "siddhartha-1",
+    "text": "知识可以传授，但智慧不能。人们可以寻见智慧，在生命中体现智慧，但人们不可能去传授和教导智慧。",
+    "author": "悉达多",
+    "source": "赫尔曼·黑塞《悉达多》",
+    "category": "philosophy",
+    "theme": "cyan"
+  },
+  {
+    "id": "siddhartha-2",
+    "text": "我通过我的灵魂与肉体得知，堕落乃为必需。我必经历贪欲，我必去追逐财富，体验恶心，陷于绝望的深渊，并由此学会去抵御它们。",
+    "author": "悉达多",
+    "source": "赫尔曼·黑塞《悉达多》",
+    "category": "philosophy",
+    "theme": "cyan"
+  },
+  {
+    "id": "siddhartha-3",
+    "text": "一个人如果通过爱、观察和体验去认识世界，那么他就不会评判世界。",
+    "author": "悉达多",
+    "source": "赫尔曼·黑塞《悉达多》",
+    "category": "philosophy",
+    "theme": "cyan"
+  },
+  {
+    "id": "buffett-1",
+    "text": "Rule No.1: Never lose money. Rule No.2: Never forget rule No.1.",
+    "author": "Warren Buffett",
+    "source": "伯克希尔·哈撒韦",
+    "category": "investment",
+    "theme": "gold"
+  },
+  {
+    "id": "buffett-2",
+    "text": "Price is what you pay. Value is what you get.",
+    "author": "Warren Buffett",
+    "source": "致股东信",
+    "category": "investment",
+    "theme": "gold"
+  },
+  {
+    "id": "buffett-3",
+    "text": "It takes 20 years to build a reputation and five minutes to ruin it. If you think about that, you'll do things differently.",
+    "author": "Warren Buffett",
+    "source": "致股东信",
+    "category": "investment",
+    "theme": "gold"
+  },
+  {
+    "id": "lol-yasuo-1",
+    "text": "死亡如风，常伴吾身。",
+    "author": "亚索",
+    "source": "英雄联盟",
+    "category": "gaming",
+    "theme": "purple"
+  },
+  {
+    "id": "lol-yi-1",
+    "text": "真正的大师，永远都怀着一颗学徒的心。",
+    "author": "易大师",
+    "source": "英雄联盟",
+    "category": "gaming",
+    "theme": "purple"
+  },
+  {
+    "id": "lol-yasuo-2",
+    "text": "荣耀存于心，而非留于名。",
+    "author": "亚索",
+    "source": "英雄联盟",
+    "category": "gaming",
+    "theme": "purple"
+  },
+  {
+    "id": "lol-akali-1",
+    "text": "均衡存乎万物之间。",
+    "author": "阿卡丽",
+    "source": "英雄联盟",
+    "category": "gaming",
+    "theme": "purple"
+  },
+  {
+    "id": "kobe-1",
+    "text": "Mamba mentality is about trying to be the best version of yourself.",
+    "author": "Kobe Bryant",
+    "source": "曼巴精神",
+    "category": "sports",
+    "theme": "orange"
+  },
+  {
+    "id": "kobe-2",
+    "text": "The most important thing is to try and inspire people so that they can be great at whatever they want to do.",
+    "author": "Kobe Bryant",
+    "source": "退役演讲",
+    "category": "sports",
+    "theme": "orange"
+  },
+  {
+    "id": "james-1",
+    "text": "I like criticism. It makes you strong.",
+    "author": "LeBron James",
+    "source": "NBA采访",
+    "category": "sports",
+    "theme": "orange"
+  },
+  {
+    "id": "james-2",
+    "text": "You can't be afraid to fail. It's the only way you succeed.",
+    "author": "LeBron James",
+    "source": "NBA采访",
+    "category": "sports",
+    "theme": "orange"
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "pq-1",
+    "text": "优化算法的本质，是在约束里找最优解，人生也是",
+    "category": "research",
+    "theme": "purple",
+    "context": "研究随想"
+  },
+  {
+    "id": "pq-2",
+    "text": "今天湖人赢了，我的优化模型也收敛了，双喜临门",
+    "category": "life",
+    "theme": "orange",
+    "context": "日常碎碎念"
+  },
+  {
+    "id": "pq-3",
+    "text": "好的算法和好的篮球战术一样，不在于复杂，而在于恰到好处",
+    "category": "research",
+    "theme": "purple",
+    "context": "研究随想"
+  },
+  {
+    "id": "pq-4",
+    "text": "读论文就像看球赛，外行看热闹，内行看门道——而我的目标是成为那个看门道的人",
+    "category": "growth",
+    "theme": "cyan",
+    "context": "成长感悟"
+  },
+  {
+    "id": "pq-5",
+    "text": "强化学习的核心是试错，人类的学习又何尝不是如此",
+    "category": "research",
+    "theme": "purple",
+    "context": "研究随想"
+  },
+  {
+    "id": "pq-6",
+    "text": "炒股亏的钱，就当是交了RL环境的training cost吧",
+    "category": "life",
+    "theme": "gold",
+    "context": "日常碎碎念"
+  },
+  {
+    "id": "pq-7",
+    "text": "最优雅的代码，往往是最短的那一行——最优美的证明也是",
+    "category": "research",
+    "theme": "purple",
+    "context": "研究随想"
+  },
+  {
+    "id": "pq-8",
+    "text": "跑了十公里之后我才明白，科研和长跑一样，拼的不是速度，是耐力",
+    "category": "growth",
+    "theme": "orange",
+    "context": "成长感悟"
+  },
+  {
+    "id": "pq-9",
+    "text": "每一个converged的loss背后，都有一个调参调到崩溃的灵魂",
+    "category": "life",
+    "theme": "cyan",
+    "context": "日常碎碎念"
+  },
+  {
+    "id": "pq-10",
+    "text": "学术研究的浪漫在于：你在解决一个前人从未解决过的问题",
+    "category": "research",
+    "theme": "purple",
+    "context": "研究随想"
+  }
+]

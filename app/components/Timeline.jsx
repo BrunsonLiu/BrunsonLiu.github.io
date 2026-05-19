@@ -1,10 +1,10 @@
-export default function Timeline({ items }) {
+﻿export default function Timeline({ items }) {
   return (
     <ol className="relative border-s pl-6" style={{ borderColor: "var(--surface)" }}>
       {items.map((it, idx) => (
         <li key={idx} className="mb-6">
           <div 
-            className="absolute -left-[7px] mt-1 h-3 w-3 rounded-full" 
+            className="absolute -left-[7px] mt-1 h-3 w-3 " 
             style={{ backgroundColor: "var(--brand)" }} 
           />
           <p className="text-sm" style={{ color: "var(--muted)" }}>{it.date}</p>

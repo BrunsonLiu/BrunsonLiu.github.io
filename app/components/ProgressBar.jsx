@@ -1,14 +1,21 @@
-"use client";
+﻿﻿﻿﻿"use client";
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProgressBar() {
   const [progress, setProgress] = useState(0);
+  const [showConvergence, setShowConvergence] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const max = document.body.scrollHeight - window.innerHeight;
       const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
       setProgress(pct);
+      if (pct > 95) {
+        setShowConvergence(true);
+      } else {
+        setShowConvergence(false);
+      }
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -16,11 +23,26 @@ export default function ProgressBar() {
   }, []);
 
   return (
-    <div
-      className="fixed top-0 left-0 h-[2px] z-[60]"
-      style={{ width: `${progress}%`,
-        background: "linear-gradient(90deg, var(--brand), rgba(37,99,235,0.6))" }}
-    />
+    <div className="fixed top-0 left-0 w-full z-[60]">
+      <div
+        className="h-[2px]"
+        style={{ width: `${progress}%`,
+          background: "linear-gradient(90deg, var(--brand), rgba(37,99,235,0.6))" }}
+      />
+      <AnimatePresence>
+        {showConvergence && (
+          <motion.div
+            className="text-[9px]  tracking-wider px-2 py-0.5"
+            style={{ color: "var(--brand)", opacity: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            exit={{ opacity: 0 }}
+          >
+            100% 优化收敛完成
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 

@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Learning to Optimize (L2O)",
+    "desc": "Neural networks learning heuristic solvers for combinatorial optimization.",
+    "icon": "brain",
+    "tags": ["Deep Learning", "Optimization", "Neural Networks"]
+  },
+  {
+    "title": "VRP Reinforcement Learning",
+    "desc": "Using policy gradient to solve vehicle routing problems efficiently.",
+    "icon": "route",
+    "tags": ["Reinforcement Learning", "VRP", "Policy Gradient"]
+  },
+  {
+    "title": "Supply Chain Optimization",
+    "desc": "Hybrid MILP + ML models to enhance logistics coordination.",
+    "icon": "chart",
+    "tags": ["MILP", "Machine Learning", "Logistics"]
+  }
+]
