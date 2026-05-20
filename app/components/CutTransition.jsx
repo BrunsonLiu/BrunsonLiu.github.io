@@ -39,7 +39,7 @@ export default function CutTransition() {
       style={{
         background: "rgba(255,255,255,0.03)",
         opacity: active ? 1 : 0,
-        transition: "opacity 0.15s ease-out, opacity 0.3s ease-in",
+        transition: "opacity 0.3s ease-in-out",
       }}
     />
   );

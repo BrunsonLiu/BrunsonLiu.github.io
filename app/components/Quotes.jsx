@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import quotesData from "../../data/quotes.json";
@@ -138,10 +138,18 @@ function QuoteRotator() {
   const handleTypingComplete = () => {
     setIsTyping(false);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % quotes.length);
+      setCurrentIndex((prev) => quotes.length > 0 ? (prev + 1) % quotes.length : 0);
       setIsTyping(true);
     }, 2000);
   };
+
+  if (!quotes || quotes.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-sm" style={{ color: "var(--muted)" }}>语录正在建设中...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center px-8 sm:px-12 lg:px-24">

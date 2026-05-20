@@ -1,4 +1,4 @@
-﻿﻿"use client";
+﻿﻿﻿﻿﻿﻿﻿﻿"use client";
 import { FadeIn, SectionLabel } from "../components/space";
 import { competitions, internships } from "../data/experience";
 

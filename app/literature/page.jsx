@@ -1,21 +1,6 @@
 "use client";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { SlowIn } from "../components/space";
 import Link from "next/link";
-
-function SlowIn({ children, delay = 0, className = "" }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div ref={ref} className={className}
-      initial={{ opacity: 0, y: 12 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay, duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 const pavilions = [
   {
@@ -73,7 +58,7 @@ export default function LiteraturePage() {
         <div className="space-y-0">
           {pavilions.map((p, i) => (
             <SlowIn key={p.title} delay={0.1 * i}>
-              <Link href={p.href} className="block group">
+              <Link href={p.href} prefetch={false} className="block group">
                 <div className="py-10 px-2 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3 transition-all duration-700"
                   style={{ borderBottom: "1px solid var(--sp-surface-border)" }}>
                   <div className="flex-1">

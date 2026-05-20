@@ -1,4 +1,4 @@
-﻿﻿﻿﻿"use client";
+﻿﻿﻿﻿﻿﻿﻿﻿"use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaGamepad, FaChartLine, FaBasketballBall, FaRunning, FaLightbulb, FaComments, FaYinYang } from "react-icons/fa";

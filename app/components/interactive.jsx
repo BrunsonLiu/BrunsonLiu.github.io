@@ -1,5 +1,5 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
-import { useRef, useState } from "react";
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
+import { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 // ============================================
@@ -135,14 +135,20 @@ export function ParallaxElement({ children, speed = 0.5, className = "" }) {
   const [offset, setOffset] = useState(0);
   const ref = useRef(null);
 
-  const handleScroll = () => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const viewportCenter = window.innerHeight / 2;
-    const elementCenter = rect.top + rect.height / 2;
-    const distance = elementCenter - viewportCenter;
-    setOffset(distance * speed * 0.1);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      const elementCenter = rect.top + rect.height / 2;
+      const distance = elementCenter - viewportCenter;
+      setOffset(distance * speed * 0.1);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [speed]);
 
   return (
     <div ref={ref} className={className} style={{ transform: `translateY(${offset}px)` }}>

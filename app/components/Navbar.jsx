@@ -1,10 +1,12 @@
-﻿"use client";
+﻿﻿﻿"use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { contact } from "../data/contact";
 
 const spaces = [
   { name: "学术", href: "/", className: "space-academic" },
+  { name: "学习", href: "/learning", className: "space-learning" },
   { name: "文学", href: "/literature", className: "space-literature" },
   { name: "运动", href: "/athletic", className: "space-athletic" },
   { name: "旷野", href: "/voyage", className: "space-voyage" },
@@ -63,7 +65,7 @@ export default function Navbar() {
 
           <span className="w-px h-3 mx-1" style={{ background: "rgba(255,255,255,0.1)" }} />
 
-          <a href="mailto:1815751961@qq.com"
+          <a href={`mailto:${contact.email}`}
             className="text-[11px] font-medium uppercase tracking-[0.2em] transition-opacity duration-300 hover:opacity-100"
             style={{ color: "var(--muted)", opacity: 0.5 }}>
             联系

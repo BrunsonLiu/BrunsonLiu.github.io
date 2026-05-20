@@ -113,7 +113,7 @@ export default function HomePage() {
             <FadeIn key={proj.title} delay={i * 0.15}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className="overflow-hidden" style={{ border: "1px solid var(--sp-surface-border)" }}>
-                  <img src={proj.image} alt={proj.title} className="w-full h-48 lg:h-64 object-cover" style={{ filter: "brightness(0.7) contrast(1.1)" }} />
+                  <img src={proj.image} alt={proj.title} loading="lazy" className="w-full h-48 lg:h-64 object-cover" style={{ filter: "brightness(0.7) contrast(1.1)" }} />
                 </div>
                 <div>
                   <div className="flex gap-2 mb-3">

@@ -36,7 +36,7 @@ export default function ResearchPage() {
             <FadeIn key={proj.title} delay={0.1}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className="overflow-hidden" style={{ border: "1px solid var(--sp-surface-border)" }}>
-                  <img src={proj.image} alt={proj.title} className="w-full h-48 lg:h-64 object-cover"
+                  <img src={proj.image} alt={proj.title} loading="lazy" className="w-full h-48 lg:h-64 object-cover"
                     style={{ filter: "brightness(0.7) contrast(1.1)" }} />
                 </div>
                 <div>

@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿"use client";
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaGithub } from "react-icons/fa";
 
@@ -96,7 +96,7 @@ export default function Footer() {
           WeChat: 永远别说永远
         </p>
         <div className="w-36 h-36 mx-auto overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-          <img src="/wechat-qr.jpg" alt="微信公众号二维码" className="w-full h-full object-contain" />
+          <img src="/wechat-qr.jpg" alt="微信公众号二维码" loading="lazy" className="w-full h-full object-contain" />
         </div>
       </motion.div>
 

@@ -88,7 +88,7 @@ export default function VoyagePage() {
           <SlowIn key={place.name} delay={0.1}>
             <div className="mb-32 last:mb-0">
               <div className="overflow-hidden mb-8" style={{ aspectRatio: "21/9" }}>
-                <img src={place.image} alt={place.name} className="w-full h-full object-cover"
+                <img src={place.image} alt={place.name} className="w-full h-full object-cover" loading="lazy"
                   style={{ filter: "brightness(0.55) saturate(0.5) contrast(1.1)" }} />
               </div>
               <div style={{ maxWidth: "var(--reading-width)" }}>
@@ -150,7 +150,7 @@ export default function VoyagePage() {
       <section className="relative" style={{ height: "70vh" }}>
         <img
           src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=endless%20ocean%20horizon%20at%20sunset%2C%20minimalist%20composition%2C%20vast%20sky%2C%20golden%20and%20muted%20blue%20tones%2C%20cinematic%2C%20editorial%20photography%2C%2035mm%20film%2C%20wide%20angle&image_size=landscape_16_9"
-          alt="Horizon"
+          alt="Horizon" loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: "brightness(0.3) saturate(0.4)" }}
         />

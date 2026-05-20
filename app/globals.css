@@ -59,6 +59,22 @@
   transition: background var(--duration-space) var(--ease-in-out), color var(--duration-space) var(--ease-in-out);
 }
 
+.space-learning {
+  --sp-bg: #0b0d0f;
+  --sp-text: #c5c8cc;
+  --sp-muted: #5c6066;
+  --sp-accent: #8899aa;
+  --sp-brand: #6b8ab0;
+  --sp-surface: #111316;
+  --sp-surface-border: #1c1f24;
+  --sp-grain: 0.02;
+  --sp-font: var(--font-sans);
+  color: var(--sp-text);
+  background: var(--sp-bg);
+  font-family: var(--sp-font);
+  transition: background var(--duration-space) var(--ease-in-out), color var(--duration-space) var(--ease-in-out);
+}
+
 .space-literature {
   --sp-bg: #1a1714;
   --sp-text: #d4c5a9;
@@ -155,6 +171,18 @@ h1, h2, h3, h4, h5, h6 {
 ::selection {
   background: var(--brand);
   color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--brand), #4a6cf7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ========================================
@@ -299,4 +327,771 @@ h1, h2, h3, h4, h5, h6 {
   --page-surface: var(--sp-surface, #141414);
   --page-surface-border: var(--sp-surface-border, #222222);
   --page-glow: transparent;
+}
+
+/* ========================================
+   10. 3D Cover Flow Bookshelf
+   ======================================== */
+
+.cf-page {
+  color: var(--sp-text);
+  min-height: 100vh;
+}
+
+.cf-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 1.25rem 6rem;
+}
+@media (min-width: 640px) {
+  .cf-container { padding: 6rem 2rem 7rem; }
+}
+
+.cf-back-link {
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.45em;
+  display: inline-block;
+  margin-bottom: 3.5rem;
+  color: var(--sp-muted);
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  text-decoration: none;
+}
+.cf-back-link:hover { opacity: 0.9; }
+
+.cf-title {
+  font-size: clamp(28px, 4.5vw, 44px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--sp-text);
+  font-family: var(--font-display);
+}
+
+.cf-subtitle {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--sp-muted);
+  margin-bottom: 3.5rem;
+  letter-spacing: 0.03em;
+}
+
+/* ====== STAGE & VIEWPORT ====== */
+
+.cf-stage {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.cf-viewport {
+  position: relative;
+  width: 100%;
+  height: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .cf-viewport { height: 760px; }
+}
+
+/* ====== CAROUSEL ====== */
+
+.cf-carousel {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+@media (min-width: 640px) {
+  .cf-carousel { height: 720px; }
+}
+
+/* edge fade overlays */
+.cf-carousel-fade {
+  position: absolute;
+  top: 0;
+  bottom: 80px;
+  width: 200px;
+  z-index: 200;
+  pointer-events: none;
+}
+.cf-carousel-fade-l {
+  left: -20px;
+  background: linear-gradient(to right, var(--sp-bg) 0%, transparent 100%);
+}
+.cf-carousel-fade-r {
+  right: -20px;
+  background: linear-gradient(to left, var(--sp-bg) 0%, transparent 100%);
+}
+
+/* ====== BOOK WRAPPER (book + reflection) ====== */
+
+.cf-book-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform-style: preserve-3d;
+}
+
+/* ====== BOOK COVER ====== */
+
+.cf-book {
+  position: relative;
+  width: clamp(160px, 18vw, 280px);
+  height: clamp(228px, 26vw, 400px);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 2px 5px 5px 2px;
+  overflow: visible;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 800px;
+}
+@media (min-width: 640px) {
+  .cf-book {
+    width: clamp(190px, 17vw, 320px);
+    height: clamp(270px, 28vw, 456px);
+  }
+}
+
+/* ====== BOOK SPINE ====== */
+
+.cf-book-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.5) 0%,
+    rgba(0,0,0,0.2) 30%,
+    rgba(255,255,255,0.05) 70%,
+    rgba(0,0,0,0.15) 100%
+  );
+  transform-origin: left center;
+  transform: rotateY(-90deg) translateZ(16px);
+  border-radius: 2px 0 0 2px;
+}
+
+.cf-book-back {
+  position: absolute;
+  inset: 0;
+  background: #1a1816;
+  border-radius: 2px 5px 5px 2px;
+  transform: translateZ(-16px);
+  box-shadow:
+    inset 0 0 20px rgba(0,0,0,0.4),
+    0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* front face */
+.cf-book-front {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px 5px 5px 2px;
+  overflow: hidden;
+  transform: translateZ(16px);
+  box-shadow:
+    -2px 0 8px rgba(0,0,0,0.3),
+    2px 0 8px rgba(0,0,0,0.15),
+    0 8px 24px rgba(0,0,0,0.4);
+}
+
+.cf-book-active {
+  box-shadow:
+    -6px 0 20px rgba(0,0,0,0.4),
+    6px 0 20px rgba(0,0,0,0.4),
+    0 14px 40px rgba(0,0,0,0.5);
+}
+
+.cf-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 3px 5px 5px 3px;
+}
+
+.cf-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 60%,
+    rgba(0,0,0,0.55) 100%
+  );
+  border-radius: 3px 5px 5px 3px;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.cf-book:hover .cf-cover-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 55%,
+    rgba(0,0,0,0.4) 100%
+  );
+}
+
+.cf-cover-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 8px 10px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.cf-cover-label span {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.88);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  font-family: var(--font-sans);
+}
+
+/* ====== REFLECTION ====== */
+
+.cf-reflection {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: clamp(160px, 18vw, 280px);
+  height: clamp(228px, 26vw, 400px);
+  overflow: hidden;
+  border-radius: 3px 5px 5px 3px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 65%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 65%);
+  pointer-events: none;
+  transform-origin: center top;
+}
+@media (min-width: 640px) {
+  .cf-reflection {
+    width: clamp(190px, 17vw, 320px);
+    height: clamp(270px, 28vw, 456px);
+  }
+}
+
+.cf-reflect-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px 5px 5px 3px;
+  transform: scaleY(-1);
+}
+
+/* ====== GROUND LINE & GLOW ====== */
+
+.cf-ground-line {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 115px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sp-surface-border), transparent);
+  opacity: 0.4;
+}
+
+.cf-ground-glow {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 90px;
+  height: 40px;
+  background: radial-gradient(ellipse at center, rgba(201,169,110,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ====== NAVIGATION ====== */
+
+.cf-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.cf-nav-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--sp-surface-border);
+  background: transparent;
+  color: var(--sp-muted);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.cf-nav-btn:hover:not(:disabled) {
+  border-color: var(--sp-accent);
+  color: var(--sp-text);
+  transform: scale(1.06);
+}
+.cf-nav-btn:disabled {
+  opacity: 0.15;
+  cursor: default;
+}
+
+.cf-nav-counter {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--sp-muted);
+  font-variant-numeric: tabular-nums;
+  min-width: 4rem;
+  text-align: center;
+}
+
+/* ====== ACTIVE INFO ====== */
+
+.cf-active-info {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.cf-active-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--sp-text);
+  margin-bottom: 0.25rem;
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.cf-active-author {
+  font-size: 0.75rem;
+  color: var(--sp-muted);
+  letter-spacing: 0.08em;
+}
+
+/* ====== FOOTER ====== */
+
+.cf-footer {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--sp-surface-border);
+}
+
+.cf-footer-text {
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  max-width: 28rem;
+  margin: 0 auto;
+  color: var(--sp-muted);
+  font-family: var(--font-reading);
+  font-style: italic;
+  text-align: center;
+}
+
+/* ========================================
+   11. Book Notes Panel (Modal)
+   ======================================== */
+
+.cf-panel-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.cf-panel-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.cf-panel-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 10;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.3);
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.25s;
+  backdrop-filter: blur(8px);
+}
+.cf-panel-close:hover {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.85);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.cf-panel-card {
+  position: relative;
+  width: 100%;
+  max-width: 52rem;
+  max-height: 85vh;
+  margin: 2rem auto;
+  border-radius: 12px;
+  background: #0f0e0c;
+  color: #d4cfc6;
+  font-family: var(--font-reading);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 24px 80px rgba(0,0,0,0.6),
+    0 0 120px rgba(0,0,0,0.3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cf-panel-header {
+  position: relative;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+@media (min-width: 640px) {
+  .cf-panel-header {
+    grid-template-columns: 140px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem 1.25rem;
+  }
+}
+
+.cf-panel-cover-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.cf-panel-header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 0.25rem;
+}
+
+.cf-panel-tag {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--sp-accent);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-sans);
+}
+
+.cf-panel-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #eee8dc;
+  margin-bottom: 0.3rem;
+  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+}
+@media (min-width: 640px) {
+  .cf-panel-name { font-size: 1.75rem; }
+}
+
+.cf-panel-writer {
+  font-size: 0.8125rem;
+  color: #8a8275;
+  letter-spacing: 0.06em;
+  font-family: var(--font-sans);
+}
+
+.cf-panel-body {
+  padding: 1.25rem 1.5rem 1rem;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+.cf-panel-body::-webkit-scrollbar { width: 4px; }
+.cf-panel-body::-webkit-scrollbar-track { background: transparent; }
+.cf-panel-body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+}
+@media (min-width: 640px) {
+  .cf-panel-body { padding: 1.5rem 2rem 1.25rem; }
+}
+
+.cf-section {
+  margin-bottom: 1.25rem;
+}
+.cf-section:last-child { margin-bottom: 0; }
+
+.cf-section-label {
+  font-size: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--sp-accent);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-sans);
+}
+
+.cf-section-content {
+  position: relative;
+  padding-left: 0.75rem;
+  border-left: 1px solid rgba(201,169,110,0.15);
+}
+
+.cf-para {
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #b8b0a3;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.01em;
+}
+.cf-para:last-child { margin-bottom: 0; }
+
+.cf-section-quotes { margin-top: 1.5rem; }
+
+.cf-quote-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.cf-quote {
+  position: relative;
+  padding: 0.75rem 1rem 0.75rem 1.25rem;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.cf-quote-mark {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.6rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--sp-accent);
+  opacity: 0.2;
+  font-family: Georgia, serif;
+}
+
+.cf-quote-text {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: #a09888;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.cf-section-thought { margin-top: 1.5rem; }
+
+.cf-thought-box {
+  padding: 0.875rem 1.125rem;
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(201,169,110,0.06) 0%, rgba(139,69,19,0.04) 100%);
+  border: 1px solid rgba(201,169,110,0.1);
+}
+
+.cf-thought-box p {
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: #9a9285;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.cf-panel-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 9px;
+  color: #5a554d;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+@media (min-width: 640px) {
+  .cf-panel-footer { padding: 0.875rem 2rem; }
+}
+
+.cf-dot-sep { opacity: 0.4; }
+
+.cf-page-num {
+  font-variant-numeric: tabular-nums;
+  color: #6a635a;
+}
+
+/* ========================================
+   12. Grid View (All Books)
+   ======================================== */
+
+.cf-grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+}
+
+.cf-grid-panel {
+  position: fixed;
+  inset: 1.5rem;
+  z-index: 9999;
+  overflow-y: auto;
+  max-width: 48rem;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: #141210;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+@media (min-width: 640px) {
+  .cf-grid-panel { inset: 3rem; }
+}
+
+.cf-grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.cf-grid-header h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--sp-text);
+  font-family: var(--font-sans);
+  margin: 0;
+}
+
+.cf-grid-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: var(--sp-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cf-grid-close:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--sp-text);
+}
+
+.cf-grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1px;
+  padding: 1px;
+}
+
+.cf-grid-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  background: rgba(255,255,255,0.02);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+  color: var(--sp-text);
+  font-family: var(--font-sans);
+}
+.cf-grid-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+.cf-grid-item-active {
+  background: rgba(201,169,110,0.08);
+  border-left: 2px solid var(--sp-accent);
+}
+
+.cf-grid-thumb {
+  width: 36px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.cf-grid-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.cf-grid-title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--sp-text);
+}
+
+.cf-grid-author {
+  font-size: 0.6875rem;
+  color: var(--sp-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ====== Grid button ====== */
+
+.cf-grid-btn {
+  margin-left: 0.5rem;
+}
+
+/* ====== MOBILE ====== */
+
+@media (max-width: 480px) {
+  .cf-viewport { height: 540px; }
+  .cf-carousel { height: 500px; }
+  .cf-book { width: 120px; height: 170px; }
+  .cf-reflection { width: 120px; height: 170px; }
+  .cf-ground-line { bottom: 92px; }
+  .cf-ground-glow { bottom: 72px; }
+  .cf-grid-list { grid-template-columns: 1fr; }
 }
