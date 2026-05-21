@@ -56,23 +56,23 @@ function getBookPosition(i, activeIdx, total) {
 
   let opacity;
   if (absDist <= 1) opacity = 1;
-  else if (absDist === 2) opacity = 0.5;
-  else if (absDist === 3) opacity = 0.22;
-  else opacity = 0.06;
+  else if (absDist === 2) opacity = 0.6;
+  else if (absDist === 3) opacity = 0.35;
+  else opacity = 0.15;
 
   let brightness;
   if (absDist === 0) brightness = 1;
-  else if (absDist === 1) brightness = 0.65;
-  else if (absDist === 2) brightness = 0.4;
-  else if (absDist === 3) brightness = 0.25;
-  else brightness = 0.12;
+  else if (absDist === 1) brightness = 0.8;
+  else if (absDist === 2) brightness = 0.6;
+  else if (absDist === 3) brightness = 0.45;
+  else brightness = 0.3;
 
   return { rotateY, translateZ, translateX, scale, opacity, brightness, zIndex: total - absDist };
 }
 
 export default function BooksPage() {
   const books = useMemo(() => flattenBooks(bookClusters), []);
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(6);
   const [selectedBook, setSelectedBook] = useState(null);
   const [showGrid, setShowGrid] = useState(false);
   const total = books.length;
@@ -219,41 +219,39 @@ export default function BooksPage() {
           </SlowIn>
 
           <SlowIn delay={0.35}>
-            <div className="cf-nav">
-              <button onClick={() => goTo(activeIdx - 1)} disabled={activeIdx === 0} className="cf-nav-btn" aria-label="上一本">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="10,2 5,8 10,14" />
-                </svg>
-              </button>
-              <span className="cf-nav-counter">{String(activeIdx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
-              <button onClick={() => goTo(activeIdx + 1)} disabled={activeIdx === total - 1} className="cf-nav-btn" aria-label="下一本">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="6,2 11,8 6,14" />
-                </svg>
-              </button>
-              <button onClick={() => setShowGrid(true)} className="cf-nav-btn cf-grid-btn" aria-label="查看全部">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <rect x="1" y="1" width="5" height="5" rx="1" /><rect x="10" y="1" width="5" height="5" rx="1" />
-                  <rect x="1" y="10" width="5" height="5" rx="1" /><rect x="10" y="10" width="5" height="5" rx="1" />
-                </svg>
-              </button>
-            </div>
-          </SlowIn>
-
-          {activeBook && (
-            <SlowIn key={activeIdx} delay={0.3}>
-              <div className="cf-active-info">
-                <p className="cf-active-title">{activeBook.title}</p>
-                <p className="cf-active-author">{activeBook.author} · {activeBook.clusterTitle}</p>
+            <div className="cf-bottom-bar">
+              <div className="cf-nav">
+                <button onClick={() => goTo(activeIdx - 1)} disabled={activeIdx === 0} className="cf-nav-btn" aria-label="上一本">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="10,2 5,8 10,14" />
+                  </svg>
+                </button>
+                <span className="cf-nav-counter">{String(activeIdx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
+                <button onClick={() => goTo(activeIdx + 1)} disabled={activeIdx === total - 1} className="cf-nav-btn" aria-label="下一本">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="6,2 11,8 6,14" />
+                  </svg>
+                </button>
+                <button onClick={() => setShowGrid(true)} className="cf-nav-btn cf-grid-btn" aria-label="查看全部">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="1" y="1" width="5" height="5" rx="1" /><rect x="10" y="1" width="5" height="5" rx="1" />
+                    <rect x="1" y="10" width="5" height="5" rx="1" /><rect x="10" y="10" width="5" height="5" rx="1" />
+                  </svg>
+                </button>
               </div>
-            </SlowIn>
-          )}
 
-          <SlowIn delay={0.48}>
-            <div className="cf-footer">
-              <p className="cf-footer-text">
-                史铁生和余华讲同一个真理：活下去。塔拉和阿米尔讲：走出去。斯特里克兰证明：你可以选择月亮。
-              </p>
+              {activeBook && (
+                <div className="cf-active-info">
+                  <p className="cf-active-title">{activeBook.title}</p>
+                  <p className="cf-active-author">{activeBook.author} · {activeBook.clusterTitle}</p>
+                </div>
+              )}
+
+              <div className="cf-footer">
+                <p className="cf-footer-text">
+                  史铁生和余华讲同一个真理：活下去。塔拉和阿米尔讲：走出去。斯特里克兰证明：你可以选择月亮。
+                </p>
+              </div>
             </div>
           </SlowIn>
         </div>

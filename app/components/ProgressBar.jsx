@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿"use client";
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -25,9 +25,9 @@ export default function ProgressBar() {
   return (
     <div className="fixed top-0 left-0 w-full z-[60]">
       <div
-        className="h-[2px]"
+        className="h-[1px]"
         style={{ width: `${progress}%`,
-          background: "linear-gradient(90deg, var(--brand), rgba(37,99,235,0.6))" }}
+          background: "var(--sp-brand, var(--brand))" }}
       />
       <AnimatePresence>
         {showConvergence && (
@@ -38,7 +38,7 @@ export default function ProgressBar() {
             animate={{ opacity: 0.5 }}
             exit={{ opacity: 0 }}
           >
-            100% 优化收敛完成
+            — fin
           </motion.div>
         )}
       </AnimatePresence>

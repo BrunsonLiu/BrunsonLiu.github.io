@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import personalQuotes from "../../data/personal-quotes.json";

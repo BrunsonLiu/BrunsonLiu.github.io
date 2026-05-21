@@ -1,6 +1,9 @@
 ﻿"use client";
+import { useState, useCallback, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { SlowIn, AccentLine } from "../components/space";
 import { learningTopics } from "../data/learning";
+import Link from "next/link";
 
 const statusLabels = {
   exploring: "探索中",
@@ -8,98 +11,225 @@ const statusLabels = {
   applying: "应用",
 };
 
-function FragmentEntry({ entry, index }) {
+const statusColors = {
+  exploring: "#6b8ab0",
+  understood: "#7aad7a",
+  applying: "#b09a6b",
+};
+
+const topicIcons = {
+  optimization: (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /><line x1="2" y1="12" x2="22" y2="12" />
+    </svg>
+  ),
+  "machine-learning": (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
+    </svg>
+  ),
+  english: (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  ),
+  interdisciplinary: (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7.5" cy="7.5" r="5.5" /><circle cx="16.5" cy="7.5" r="5.5" /><circle cx="12" cy="16.5" r="5.5" />
+    </svg>
+  ),
+};
+
+function EntryCard({ entry, index }) {
   return (
-    <SlowIn delay={0.06 * index}>
-      <div className="group pb-14">
-        <div className="pl-4" style={{ borderLeft: "1px solid var(--sp-surface-border)" }}>
-          <span className="text-[10px] font-medium tracking-[0.15em] mb-3 inline-block"
-            style={{ color: "var(--sp-muted)" }}>
-            {entry.date}
-          </span>
-
-          <p className="text-sm leading-relaxed mb-2"
-            style={{ color: "var(--sp-text)", letterSpacing: "0.02em" }}>
-            {entry.insight}
-          </p>
-
-          {entry.discovery && (
-            <p className="text-xs leading-relaxed mb-4"
-              style={{ color: "var(--sp-accent)", fontStyle: "italic", opacity: 0.8 }}>
-              → {entry.discovery}
-            </p>
-          )}
-
-          <span className="text-[10px] font-medium tracking-[0.1em] px-2 py-0.5 inline-block"
-            style={{
-              color: "var(--sp-muted)",
-              background: "var(--sp-surface)",
-              border: "1px solid var(--sp-surface-border)",
-            }}>
-            {statusLabels[entry.status] || entry.status}
-          </span>
-        </div>
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.06, duration: 0.35 }}
+      className="learn-entry"
+    >
+      <div className="learn-entry-header">
+        <span className="learn-entry-date">{entry.date}</span>
+        <span
+          className="learn-entry-status"
+          style={{ color: statusColors[entry.status] || "var(--sp-muted)" }}
+        >
+          {statusLabels[entry.status] || entry.status}
+        </span>
       </div>
-    </SlowIn>
+      <p className="learn-entry-insight">{entry.insight}</p>
+      {entry.discovery && (
+        <p className="learn-entry-discovery">→ {entry.discovery}</p>
+      )}
+    </motion.div>
   );
 }
 
 export default function LearningPage() {
+  const [selectedTopic, setSelectedTopic] = useState(null);
+
+  const handleClose = useCallback(() => setSelectedTopic(null), []);
+
+  useEffect(() => {
+    function handleKey(e) {
+      if (e.key === "Escape") handleClose();
+    }
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [handleClose]);
+
   return (
     <div className="space-learning min-h-screen pt-16">
       <div className="space-grain" />
 
-      <div className="px-6 lg:px-8 py-24" style={{ maxWidth: "var(--reading-width)", margin: "0 auto" }}>
+      <div className="learn-container">
         <SlowIn>
-          <p className="text-[10px] font-medium uppercase tracking-[0.4em] mb-16"
-            style={{ color: "var(--sp-muted)" }}>
-            认知日志
-          </p>
+          <Link href="/" prefetch={false} className="learn-back-link">
+            ← 首页
+          </Link>
         </SlowIn>
 
-        <SlowIn delay={0.1}>
-          <h1 className="mb-6" style={{
-            fontSize: "clamp(36px, 6vw, 56px)",
-            fontWeight: 300, lineHeight: 1.15, letterSpacing: "-0.01em",
-            color: "var(--sp-text)",
-          }}>
-            学习。
-          </h1>
+        <SlowIn delay={0.06}>
+          <p className="learn-eyebrow">认知日志</p>
+        </SlowIn>
+
+        <SlowIn delay={0.12}>
+          <h1 className="learn-title">学习。</h1>
         </SlowIn>
 
         <SlowIn delay={0.2}>
           <AccentLine width="40px" />
-          <p className="text-sm leading-relaxed max-w-sm mb-24"
-            style={{ color: "var(--sp-muted)", letterSpacing: "0.02em" }}>
+          <p className="learn-subtitle">
             不是在记录学了多少，而是在观察思维如何生长。
           </p>
         </SlowIn>
 
-        {learningTopics.map((topic) => (
-          <div key={topic.id} className="mb-24 last:mb-0">
-            <SlowIn delay={0.15}>
-              <div className="mb-3">
-                <h2 className="text-lg font-medium mb-1"
-                  style={{ color: "var(--sp-text)", letterSpacing: "0.04em" }}>
-                  {topic.name}
-                </h2>
-                <p className="text-xs"
-                  style={{ color: "var(--sp-muted)", letterSpacing: "0.03em" }}>
-                  {topic.description}
-                </p>
-              </div>
-            </SlowIn>
+        <SlowIn delay={0.3}>
+          <div className="learn-grid">
+            {learningTopics.map((topic, i) => {
+              const latestEntry = topic.entries[0];
+              const entryCount = topic.entries.length;
+              const statusCounts = {};
+              topic.entries.forEach((e) => {
+                statusCounts[e.status] = (statusCounts[e.status] || 0) + 1;
+              });
 
-            <div>
-              {topic.entries.map((entry, i) => (
-                <FragmentEntry key={entry.id} entry={entry} index={i} />
-              ))}
-            </div>
+              return (
+                <motion.button
+                  key={topic.id}
+                  className="learn-topic-card"
+                  onClick={() => setSelectedTopic(topic)}
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <div className="learn-topic-icon">
+                    {topicIcons[topic.id] || topicIcons.optimization}
+                  </div>
 
-            <div style={{ width: "100%", height: "1px", background: "var(--sp-surface-border)", marginTop: "0.5rem" }} />
+                  <div className="learn-topic-head">
+                    <h2 className="learn-topic-name">{topic.name}</h2>
+                    <span className="learn-topic-count">{entryCount} 条</span>
+                  </div>
+
+                  <p className="learn-topic-desc">{topic.description}</p>
+
+                  <div className="learn-topic-stats">
+                    {Object.entries(statusCounts).map(([status, count]) => (
+                      <span
+                        key={status}
+                        className="learn-topic-stat"
+                        style={{ color: statusColors[status] }}
+                      >
+                        {statusLabels[status]} {count}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="learn-topic-preview">
+                    <span className="learn-topic-preview-label">最新</span>
+                    <p className="learn-topic-preview-text">
+                      {latestEntry.insight.length > 80
+                        ? latestEntry.insight.slice(0, 80) + "…"
+                        : latestEntry.insight}
+                    </p>
+                  </div>
+                </motion.button>
+              );
+            })}
           </div>
-        ))}
+        </SlowIn>
       </div>
+
+      <AnimatePresence>
+        {selectedTopic && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="learn-panel-overlay"
+              onClick={handleClose}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.97 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="learn-panel-wrapper"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="learn-panel-card">
+                <button
+                  onClick={handleClose}
+                  className="learn-panel-close"
+                  aria-label="关闭"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+
+                <div className="learn-panel-header">
+                  <div className="learn-panel-icon">
+                    {topicIcons[selectedTopic.id] || topicIcons.optimization}
+                  </div>
+                  <div>
+                    <h2 className="learn-panel-name">{selectedTopic.name}</h2>
+                    <p className="learn-panel-desc">
+                      {selectedTopic.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="learn-panel-body">
+                  {selectedTopic.entries.map((entry, i) => (
+                    <EntryCard key={entry.id} entry={entry} index={i} />
+                  ))}
+                </div>
+
+                <div className="learn-panel-footer">
+                  <span>点击外部区域返回</span>
+                  <span className="learn-dot-sep">·</span>
+                  <span>{selectedTopic.entries.length} 条记录</span>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

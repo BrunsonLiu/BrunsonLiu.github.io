@@ -30,7 +30,7 @@ export const researchAreas = [
 
 export const skills = {
   "优化求解": ["Gurobi", "CPLEX", "OR-Tools", "元启发式"],
-  "机器学习": ["PyTorch", "深度强化学习", "GNN", "Transformer"],
+  "机器学习": ["PyTorch", "深度强化学习", "Transformer"],
   "编程语言": ["Python", "C++", "Java", "SQL"],
   "工具链": ["LaTeX", "Git", "Linux", "Docker"],
 };
@@ -56,9 +56,44 @@ export const projects = [
   },
 ];
 
+export const experiences = [
+  {
+    id: "mcm",
+    name: "美赛 (MCM/ICM)",
+    role: "建模手 · 两次 Finalist",
+    period: "2024 / 2025",
+    detail: "作为团队建模手，负责问题建模与算法设计。2024年 E 题（可持续发展方向）获 Finalist（全球前 1%），2025年再次参赛获 Finalist。核心工作：将实际问题抽象为 MILP / 启发式模型，用 Python + Gurobi 求解，撰写技术报告。",
+    tags: ["建模", "Gurobi", "Python"],
+  },
+  {
+    id: "ors",
+    name: "运筹学会",
+    role: "会员 · 学术交流",
+    period: "2023 – 至今",
+    detail: "参与运筹学学术研讨会，关注 L2O、VRP 等前沿方向。通过学会接触到 Learning to Optimize 领域，直接影响了后续研究方向的选择。",
+    tags: ["学术", "L2O", "VRP"],
+  },
+  {
+    id: "cxmt",
+    name: "CXMT",
+    role: "算法实习生",
+    period: "2025 暑",
+    detail: "在供应链与物流部门负责路径优化算法研发。将学术研究中的 VRP 求解方法落地到实际配送场景，处理真实约束（时间窗、车辆容量、多仓协同），优化效果显著。",
+    tags: ["VRP", "供应链", "落地"],
+  },
+  {
+    id: "sibao",
+    name: "丝宝集团",
+    role: "数据分析师实习生",
+    period: "2024 暑",
+    detail: "负责销售数据分析与可视化，搭建数据看板。用 SQL + Python 处理清洗数据，发现销售规律，为管理层提供决策支持。第一次体会到数据驱动决策的力量。",
+    tags: ["SQL", "Python", "可视化"],
+  },
+];
+
 export const spaces = [
-  { name: "文学", href: "/literature", desc: "诗歌、书籍、电影", palette: "#1a1714", accent: "#c9a96e" },
+    { name: "文学", href: "/literature", desc: "诗歌、书籍、电影", palette: "#1a1714", accent: "#c9a96e" },
   { name: "运动", href: "/athletic", desc: "跑步、篮球、自律", palette: "#050505", accent: "#ff3b30" },
-  { name: "旷野", href: "/voyage", desc: "远方、语言、自然", palette: "#111419", accent: "#c9a96e" },
+  { name: "旅行", href: "/voyage", desc: "远方、语言、自然", palette: "#111419", accent: "#c9a96e" },
   { name: "沉思", href: "/reflection", desc: "随笔、笔记、安静", palette: "#0a0a0a", accent: "#888888" },
 ];

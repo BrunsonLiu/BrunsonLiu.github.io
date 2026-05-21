@@ -1,4 +1,4 @@
-﻿﻿﻿"use client";
+﻿﻿﻿﻿﻿"use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,7 +9,7 @@ const spaces = [
   { name: "学习", href: "/learning", className: "space-learning" },
   { name: "文学", href: "/literature", className: "space-literature" },
   { name: "运动", href: "/athletic", className: "space-athletic" },
-  { name: "旷野", href: "/voyage", className: "space-voyage" },
+  { name: "旅行", href: "/voyage", className: "space-voyage" },
   { name: "沉思", href: "/reflection", className: "space-reflection" },
 ];
 
