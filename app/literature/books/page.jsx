@@ -125,7 +125,7 @@ export default function BooksPage() {
 
           <SlowIn delay={0.12}>
             <AccentLine />
-            <p className="cf-subtitle">← → 键盘或拖拽切换 · 点击封面查看笔记</p>
+            <p className="cf-subtitle">← → 键盘或拖拽切换 · 点击封面左/右翻页 · 中间查看笔记</p>
           </SlowIn>
 
           <SlowIn delay={0.2}>
@@ -146,10 +146,20 @@ export default function BooksPage() {
                     const pos = getBookPosition(i, activeIdx, total);
                     const isActive = i === activeIdx;
 
+                    const handleClick = (e) => {
+                      if (!isActive) { goTo(i); return; }
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const x = e.clientX - rect.left;
+                      const ratio = x / rect.width;
+                      if (ratio < 0.3) goTo(activeIdx - 1);
+                      else if (ratio > 0.7) goTo(activeIdx + 1);
+                      else setSelectedBook(book);
+                    };
+
                     return (
                       <div key={book.idx} className="cf-book-wrapper" style={{ zIndex: pos.zIndex }}>
                         <motion.button
-                          onClick={() => isActive ? setSelectedBook(book) : goTo(i)}
+                          onClick={handleClick}
                           className={`cf-book ${isActive ? "cf-book-active" : ""}`}
                           animate={{
                             x: pos.translateX,
@@ -220,25 +230,7 @@ export default function BooksPage() {
 
           <SlowIn delay={0.35}>
             <div className="cf-bottom-bar">
-              <div className="cf-nav">
-                <button onClick={() => goTo(activeIdx - 1)} disabled={activeIdx === 0} className="cf-nav-btn" aria-label="上一本">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="10,2 5,8 10,14" />
-                  </svg>
-                </button>
-                <span className="cf-nav-counter">{String(activeIdx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
-                <button onClick={() => goTo(activeIdx + 1)} disabled={activeIdx === total - 1} className="cf-nav-btn" aria-label="下一本">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="6,2 11,8 6,14" />
-                  </svg>
-                </button>
-                <button onClick={() => setShowGrid(true)} className="cf-nav-btn cf-grid-btn" aria-label="查看全部">
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <rect x="1" y="1" width="5" height="5" rx="1" /><rect x="10" y="1" width="5" height="5" rx="1" />
-                    <rect x="1" y="10" width="5" height="5" rx="1" /><rect x="10" y="10" width="5" height="5" rx="1" />
-                  </svg>
-                </button>
-              </div>
+              <span className="cf-nav-counter">{String(activeIdx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
 
               {activeBook && (
                 <div className="cf-active-info">
@@ -246,6 +238,13 @@ export default function BooksPage() {
                   <p className="cf-active-author">{activeBook.author} · {activeBook.clusterTitle}</p>
                 </div>
               )}
+
+              <button onClick={() => setShowGrid(true)} className="cf-grid-toggle" aria-label="查看全部">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <rect x="1" y="1" width="5" height="5" rx="1" /><rect x="10" y="1" width="5" height="5" rx="1" />
+                  <rect x="1" y="10" width="5" height="5" rx="1" /><rect x="10" y="10" width="5" height="5" rx="1" />
+                </svg>
+              </button>
 
               <div className="cf-footer">
                 <p className="cf-footer-text">

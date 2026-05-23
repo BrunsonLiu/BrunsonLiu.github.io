@@ -82,13 +82,13 @@ export default function AthleticPage() {
         </SlowIn>
 
         <SlowIn delay={0.12}>
-          <h1 className="bball-title">自律。</h1>
+          <h1 className="bball-title">自律</h1>
         </SlowIn>
 
         <SlowIn delay={0.2}>
           <AccentLine width="64px" />
           <p className="bball-subtitle">
-            通过身体践行长期主义。跑步、篮球，以及每天出现的哲学。
+            就算所有人都倒下，我依旧坚强。
           </p>
         </SlowIn>
 

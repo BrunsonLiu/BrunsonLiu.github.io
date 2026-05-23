@@ -1,22 +1,22 @@
 export const places = [
   {
     name: "上海",
-    feeling: "永不停歇的节奏。在这里我学会了快，也学会了在快中找慢。",
+    feeling: "快。什么都快。但在快里也能找到自己的节奏。",
     image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Shanghai%20skyline%20at%20dusk%20from%20across%20Huangpu%20River%2C%20golden%20hour%2C%20wide%20cinematic%20composition%2C%20muted%20desaturated%20tones%2C%20editorial%20photography%2C%2035mm%20film&image_size=landscape_16_9",
   },
   {
     name: "武汉",
-    feeling: "长江边的黄昏。樱花、热干面，和四年最好的时光。",
+    feeling: "读了四年书的地方。长江边、樱花、热干面。",
     image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Yangtze%20River%20at%20golden%20hour%20in%20Wuhan%2C%20wide%20cinematic%20shot%2C%20misty%20atmosphere%2C%20muted%20warm%20tones%2C%20editorial%20photography%2C%2035mm%20film&image_size=landscape_16_9",
   },
   {
     name: "合肥",
-    feeling: "安静、专注。研究发生的地方，出乎意料地有湖有树。",
+    feeling: "做研究的地方。安静，有湖。",
     image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=serene%20lake%20at%20dawn%20in%20China%2C%20mist%20rising%20from%20still%20water%2C%20vast%20sky%20reflected%2C%20muted%20natural%20tones%2C%20cinematic%20wide%20shot%2C%20editorial%20photography%2C%2035mm%20film&image_size=landscape_16_9",
   },
   {
     name: "杭州",
-    feeling: "秋天的西湖。最接近古典山水画的存在。",
+    feeling: "秋天去过一次西湖，确实像画里一样。",
     image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=West%20Lake%20Hangzhou%20in%20autumn%20mist%2C%20traditional%20Chinese%20landscape%20feel%2C%20muted%20golden%20tones%2C%20cinematic%20wide%20composition%2C%20editorial%20photography%2C%2035mm%20film&image_size=landscape_16_9",
   },
 ];
@@ -28,9 +28,9 @@ export const englishJourney = [
 ];
 
 export const notes = [
-  "风从海上来的时候，你能闻到盐的味道。那是自由的味道。",
-  "地平线永远在退后。走一步，它退一步。但正是这个距离，让人想继续走。",
-  "草原上没有参照物。你才知道自己有多大，世界有多大。",
-  "英语不是一门课。是另一双眼睛，看同一个世界。",
-  "最好的旅行不是去了哪里，是你和那个地方之间的空气。",
+  "海边确实能闻到盐味。",
+  "地平线永远在退后，但这个距离让人想继续走。",
+  "草原上没有参照物，你才知道世界有多大。",
+  "英语不是一门课，是另一双眼睛。",
+  "最好的旅行不是去了哪里，是那个地方让你想明白了一些事。",
 ];

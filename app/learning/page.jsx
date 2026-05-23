@@ -1,4 +1,4 @@
-﻿"use client";
+﻿﻿﻿﻿"use client";
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SlowIn, AccentLine } from "../components/space";
@@ -94,13 +94,13 @@ export default function LearningPage() {
         </SlowIn>
 
         <SlowIn delay={0.12}>
-          <h1 className="learn-title">学习。</h1>
+          <h1 className="learn-title">学习</h1>
         </SlowIn>
 
         <SlowIn delay={0.2}>
           <AccentLine width="40px" />
           <p className="learn-subtitle">
-            不是在记录学了多少，而是在观察思维如何生长。
+            孩儿立志出乡关，学不成名誓不还。
           </p>
         </SlowIn>
 

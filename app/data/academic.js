@@ -95,5 +95,5 @@ export const spaces = [
     { name: "文学", href: "/literature", desc: "诗歌、书籍、电影", palette: "#1a1714", accent: "#c9a96e" },
   { name: "运动", href: "/athletic", desc: "跑步、篮球、自律", palette: "#050505", accent: "#ff3b30" },
   { name: "旅行", href: "/voyage", desc: "远方、语言、自然", palette: "#111419", accent: "#c9a96e" },
-  { name: "沉思", href: "/reflection", desc: "随笔、笔记、安静", palette: "#0a0a0a", accent: "#888888" },
+  { name: "思考", href: "/reflection", desc: "随笔、笔记、安静", palette: "#0a0a0a", accent: "#888888" },
 ];

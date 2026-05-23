@@ -1,7 +1,7 @@
 "use client";
-import { useRef, useState, useCallback, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { profile, education, skills, spaces } from "./data/academic";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { profile, education, skills } from "./data/academic";
 import { researchProjects } from "./data/research";
 import { competitions, internships } from "./data/experience";
 
@@ -11,14 +11,6 @@ export default function HomePage() {
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
-  const [selectedExp, setSelectedExp] = useState(null);
-  const handleClose = useCallback(() => setSelectedExp(null), []);
-
-  useEffect(() => {
-    function handleKey(e) { if (e.key === "Escape") handleClose(); }
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [handleClose]);
 
   return (
     <div className="space-academic min-h-screen" ref={containerRef}>
@@ -205,7 +197,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="ed-section">
+      <section className="ed-section ed-section-last">
         <div className="ed-section-head">
           <h2 className="ed-section-title">工具</h2>
           <span className="ed-section-en">Tools</span>
@@ -223,85 +215,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      <section className="ed-section ed-section-last">
-        <div className="ed-section-head">
-          <h2 className="ed-section-title">其他空间</h2>
-          <span className="ed-section-en">Spaces</span>
-        </div>
-        <div className="ed-spaces">
-          {spaces.map((space, i) => (
-            <motion.a
-              key={space.name}
-              href={space.href}
-              className="ed-space-card"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.6, ease }}
-            >
-              <span className="ed-space-name">{space.name}</span>
-              <span className="ed-space-desc">{space.desc}</span>
-            </motion.a>
-          ))}
-        </div>
-      </section>
-
-      <AnimatePresence>
-        {selectedExp && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="ed-panel-overlay"
-              onClick={handleClose}
-            />
-            <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 16 }}
-              transition={{ duration: 0.6, ease }}
-              className="ed-panel-wrapper"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="ed-panel-card">
-                <button onClick={handleClose} className="ed-panel-close" aria-label="关闭">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
-                </button>
-                <div className="ed-panel-body">
-                  {selectedExp.formula && (
-                    <p className="ed-panel-formula">{selectedExp.formula}</p>
-                  )}
-                  <h2 className="ed-panel-name">{selectedExp.name || selectedExp.title}</h2>
-                  <p className="ed-panel-role">{selectedExp.role || selectedExp.subtitle}</p>
-                  {selectedExp.desc && <p className="ed-panel-desc">{selectedExp.desc}</p>}
-                  {selectedExp.tags && (
-                    <div className="ed-panel-tags">
-                      {selectedExp.tags.map((t) => (
-                        <span key={t} className="ed-panel-tag">{t}</span>
-                      ))}
-                    </div>
-                  )}
-                  {selectedExp.insight && (
-                    <div className="ed-panel-insight">
-                      <p>{selectedExp.insight}</p>
-                    </div>
-                  )}
-                  {selectedExp.note && (
-                    <div className="ed-panel-note">
-                      <p>{selectedExp.note}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

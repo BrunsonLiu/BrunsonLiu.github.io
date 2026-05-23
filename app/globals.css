@@ -129,13 +129,13 @@
 }
 
 .space-reflection {
-  --sp-bg: #0a0a0a;
-  --sp-text: #b0b0b0;
-  --sp-muted: #555555;
-  --sp-accent: #888888;
-  --sp-brand: #e63946;
-  --sp-surface: #111111;
-  --sp-surface-border: #1e1e1e;
+  --sp-bg: #0c0b09;
+  --sp-text: #c8c2b6;
+  --sp-muted: #6b655a;
+  --sp-accent: #b8956a;
+  --sp-brand: #c9a96e;
+  --sp-surface: #141210;
+  --sp-surface-border: #221f1b;
   --sp-grain: 0.04;
   --sp-font: var(--font-sans);
   color: var(--sp-text);
@@ -397,14 +397,14 @@ h1, h2, h3, h4, h5, h6 {
 .cf-viewport {
   position: relative;
   width: 100%;
-  height: 460px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 @media (min-width: 640px) {
-  .cf-viewport { height: 500px; }
+  .cf-viewport { height: 440px; }
 }
 
 /* ====== CAROUSEL ====== */
@@ -412,7 +412,7 @@ h1, h2, h3, h4, h5, h6 {
 .cf-carousel {
   position: relative;
   width: 100%;
-  height: 420px;
+  height: 380px;
   transform-style: preserve-3d;
   display: flex;
   align-items: center;
@@ -420,7 +420,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: visible;
 }
 @media (min-width: 640px) {
-  .cf-carousel { height: 460px; }
+  .cf-carousel { height: 400px; }
 }
 
 /* edge fade overlays */
@@ -445,9 +445,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .cf-book-wrapper {
   position: absolute;
-  left: 50%;
+  left: 0;
+  right: 0;
   top: 0;
+  display: flex;
+  justify-content: center;
   transform-style: preserve-3d;
+  pointer-events: none;
 }
 
 /* ====== BOOK COVER ====== */
@@ -466,6 +470,7 @@ h1, h2, h3, h4, h5, h6 {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   perspective: 800px;
+  pointer-events: auto;
 }
 @media (min-width: 640px) {
   .cf-book {
@@ -613,7 +618,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   left: 10%;
   right: 10%;
-  bottom: 115px;
+  bottom: 80px;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--sp-surface-border), transparent);
   opacity: 0.4;
@@ -623,8 +628,8 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   left: 20%;
   right: 20%;
-  bottom: 90px;
-  height: 40px;
+  bottom: 60px;
+  height: 30px;
   background: radial-gradient(ellipse at center, rgba(201,169,110,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
@@ -632,38 +637,11 @@ h1, h2, h3, h4, h5, h6 {
 /* ====== NAVIGATION ====== */
 
 .cf-bottom-bar {
-  text-align: center;
-}
-
-.cf-nav {
+  max-width: 28rem;
+  margin: 0 auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 0.25rem;
-}
-
-.cf-nav-btn {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1px solid var(--sp-surface-border);
-  background: transparent;
-  color: var(--sp-muted);
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-.cf-nav-btn:hover:not(:disabled) {
-  border-color: var(--sp-accent);
-  color: var(--sp-text);
-  transform: scale(1.06);
-}
-.cf-nav-btn:disabled {
-  opacity: 0.15;
-  cursor: default;
 }
 
 .cf-nav-counter {
@@ -672,15 +650,33 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.18em;
   color: var(--sp-muted);
   font-variant-numeric: tabular-nums;
-  min-width: 4rem;
-  text-align: center;
+  margin-bottom: 0.5rem;
 }
-
-/* ====== ACTIVE INFO ====== */
 
 .cf-active-info {
   text-align: center;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.cf-grid-toggle {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid var(--sp-surface-border);
+  background: transparent;
+  color: var(--sp-muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+  opacity: 0.5;
+}
+.cf-grid-toggle:hover {
+  border-color: var(--sp-accent);
+  color: var(--sp-text);
+  opacity: 1;
 }
 
 .cf-active-title {
@@ -709,8 +705,7 @@ h1, h2, h3, h4, h5, h6 {
 .cf-footer-text {
   font-size: 0.8125rem;
   line-height: 1.7;
-  max-width: 28rem;
-  margin: 0 auto;
+  margin: 0;
   color: var(--sp-muted);
   font-family: var(--font-reading);
   font-style: italic;
@@ -1090,21 +1085,15 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.04em;
 }
 
-/* ====== Grid button ====== */
-
-.cf-grid-btn {
-  margin-left: 0.5rem;
-}
-
 /* ====== MOBILE ====== */
 
 @media (max-width: 480px) {
-  .cf-viewport { height: 380px; }
-  .cf-carousel { height: 340px; }
+  .cf-viewport { height: 340px; }
+  .cf-carousel { height: 300px; }
   .cf-book { width: 120px; height: 170px; }
   .cf-reflection { width: 120px; height: 170px; }
-  .cf-ground-line { bottom: 92px; }
-  .cf-ground-glow { bottom: 72px; }
+  .cf-ground-line { bottom: 70px; }
+  .cf-ground-glow { bottom: 55px; }
   .cf-grid-list { grid-template-columns: 1fr; }
 }
 
@@ -2027,202 +2016,111 @@ h1, h2, h3, h4, h5, h6 {
    15. Voyage / Travel Page — Compact Grid
    ======================================== */
 
-.voyage-container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 5rem 1.5rem 4rem;
-}
-
-.voyage-back-link {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: var(--sp-muted);
-  text-decoration: none;
-  margin-bottom: 3rem;
-  transition: color 0.2s;
-}
-.voyage-back-link:hover {
-  color: var(--sp-text);
-}
-
-.voyage-eyebrow {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--sp-muted);
-  margin-bottom: 1rem;
-}
-
-.voyage-title {
-  font-size: clamp(36px, 6vw, 56px);
-  font-weight: 300;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  color: var(--sp-text);
-  margin-bottom: 0.75rem;
-}
-
-.voyage-subtitle {
-  font-size: 0.875rem;
-  line-height: 1.7;
-  color: var(--sp-muted);
-  max-width: 28rem;
+.voyage-places-row {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--sp-surface-border);
   margin-bottom: 2rem;
 }
 
-.voyage-intro-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-@media (max-width: 640px) {
-  .voyage-intro-grid { grid-template-columns: 1fr; }
-}
-
-.voyage-intro-text {
-  font-size: 0.875rem;
-  line-height: 1.75;
+.voyage-place-tab {
+  padding: 0.75rem 1.25rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   color: var(--sp-muted);
+  transition: all 0.3s ease;
 }
 
-.voyage-places-grid {
+.voyage-place-tab:hover {
+  color: var(--sp-text);
+}
+
+.voyage-place-tab-active {
+  color: var(--sp-text);
+  border-bottom-color: var(--sp-accent);
+}
+
+.voyage-place-detail {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-@media (max-width: 768px) {
-  .voyage-places-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .voyage-places-grid { grid-template-columns: 1fr; }
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: center;
 }
 
-.voyage-place-card {
-  background: var(--sp-surface);
-  border: 1px solid var(--sp-surface-border);
-  border-radius: 10px;
+.voyage-place-detail-img-wrap {
+  border-radius: 6px;
   overflow: hidden;
-  transition: border-color 0.25s;
-}
-.voyage-place-card:hover {
-  border-color: var(--sp-accent);
+  aspect-ratio: 16/10;
 }
 
-.voyage-place-img-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-}
-
-.voyage-place-img {
+.voyage-place-detail-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: brightness(0.55) saturate(0.5) contrast(1.1);
-  transition: filter 0.3s, transform 0.3s;
-}
-.voyage-place-card:hover .voyage-place-img {
-  filter: brightness(0.7) saturate(0.7) contrast(1.05);
-  transform: scale(1.03);
 }
 
-.voyage-place-img-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(to top, var(--sp-surface), transparent);
+.voyage-place-detail-text {
+  padding: 0.5rem 0;
 }
 
-.voyage-place-name {
-  position: absolute;
-  bottom: 0.75rem;
-  left: 1rem;
-  font-size: 0.875rem;
-  font-weight: 700;
+.voyage-place-detail-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   color: var(--sp-text);
-  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
 }
 
-.voyage-place-feeling {
-  padding: 0.875rem 1rem;
-  font-size: 0.6875rem;
-  line-height: 1.65;
+.voyage-place-detail-feeling {
+  font-size: 0.875rem;
+  line-height: 1.9;
   color: var(--sp-muted);
+  letter-spacing: 0.02em;
 }
 
-.voyage-english-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-@media (max-width: 640px) {
-  .voyage-english-grid { grid-template-columns: 1fr; }
+.voyage-notes-list {
+  display: flex;
+  flex-direction: column;
 }
 
-.voyage-english-card {
-  padding: 1.25rem;
-  background: var(--sp-surface);
-  border: 1px solid var(--sp-surface-border);
-  border-radius: 10px;
+.voyage-note-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 
-.voyage-english-period {
-  font-size: 0.625rem;
-  font-weight: 700;
+.voyage-note-num {
+  font-size: 0.5625rem;
+  font-weight: 500;
   letter-spacing: 0.15em;
   color: var(--sp-accent);
-  display: block;
-  margin-bottom: 0.375rem;
-}
-
-.voyage-english-stage {
-  font-size: 0.9375rem;
-  font-weight: 700;
-  color: var(--sp-text);
-  letter-spacing: 0.03em;
-  margin-bottom: 0.375rem;
-}
-
-.voyage-english-desc {
-  font-size: 0.75rem;
-  line-height: 1.65;
-  color: var(--sp-muted);
-}
-
-.voyage-notes-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-@media (max-width: 640px) {
-  .voyage-notes-grid { grid-template-columns: 1fr; }
-}
-
-.voyage-note-card {
-  padding: 1.25rem;
-  background: var(--sp-surface);
-  border: 1px solid var(--sp-surface-border);
-  border-radius: 10px;
+  opacity: 0.4;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
 }
 
 .voyage-note-text {
   font-size: 0.8125rem;
-  line-height: 1.75;
+  line-height: 1.8;
   color: var(--sp-muted);
+  letter-spacing: 0.02em;
 }
 
-@media (max-width: 640px) {
-  .voyage-container { padding: 3rem 1rem 2rem; }
+@media (max-width: 768px) {
+  .voyage-place-detail { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .voyage-places-row { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .voyage-place-tab { flex-shrink: 0; padding: 0.625rem 1rem; font-size: 0.75rem; }
 }
 
 /* ========================================
@@ -2231,6 +2129,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ed-hero {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: flex-end;
   padding: 0 0 10vh 0;
@@ -2258,7 +2157,9 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 2;
 }
 @media (max-width: 640px) {
-  .ed-hero-inner { padding: 0 1.5rem; }
+  .ed-hero { padding: 0 0 6vh 0; }
+  .ed-hero::after { height: 25vh; }
+  .ed-hero-inner { padding: 0 1.25rem; }
 }
 
 .ed-hero-eyebrow {
@@ -2271,15 +2172,21 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 4rem;
   opacity: 0.7;
 }
+@media (max-width: 640px) {
+  .ed-hero-eyebrow { margin-bottom: 2.5rem; }
+}
 
 .ed-hero-name {
-  font-size: clamp(64px, 13vw, 180px);
+  font-size: clamp(48px, 13vw, 180px);
   font-weight: 200;
   line-height: 0.85;
   letter-spacing: 0.06em;
   color: var(--sp-text);
   font-family: var(--font-display);
   margin-bottom: 2.5rem;
+}
+@media (max-width: 640px) {
+  .ed-hero-name { margin-bottom: 1.5rem; }
 }
 
 .ed-hero-rule {
@@ -2289,6 +2196,9 @@ h1, h2, h3, h4, h5, h6 {
   transform-origin: left;
   margin-bottom: 2.5rem;
 }
+@media (max-width: 640px) {
+  .ed-hero-rule { margin-bottom: 1.5rem; }
+}
 
 .ed-hero-role {
   font-size: 0.9375rem;
@@ -2297,6 +2207,9 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.06em;
   margin-bottom: 1.5rem;
 }
+@media (max-width: 640px) {
+  .ed-hero-role { font-size: 0.8125rem; margin-bottom: 1rem; }
+}
 
 .ed-hero-bio {
   font-size: 0.8125rem;
@@ -2304,6 +2217,9 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--sp-muted);
   max-width: 26rem;
   margin-bottom: 4rem;
+}
+@media (max-width: 640px) {
+  .ed-hero-bio { font-size: 0.75rem; margin-bottom: 2.5rem; max-width: 100%; }
 }
 
 .ed-hero-edu {
@@ -2317,6 +2233,10 @@ h1, h2, h3, h4, h5, h6 {
   align-items: baseline;
   gap: 0.75rem;
   font-size: 0.6875rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 640px) {
+  .ed-hero-edu-item { font-size: 0.625rem; gap: 0.5rem; }
 }
 
 .ed-hero-edu-school {
@@ -2352,7 +2272,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 @media (max-width: 640px) {
-  .ed-epigraph { padding: 0 1.5rem 4rem; }
+  .ed-epigraph { padding: 0 1.25rem 3rem; }
 }
 
 .ed-epigraph-text {
@@ -2363,6 +2283,9 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
   max-width: 22rem;
   font-family: var(--font-reading);
+}
+@media (max-width: 640px) {
+  .ed-epigraph-text { font-size: 0.75rem; max-width: 100%; }
 }
 
 .ed-epigraph-source {
@@ -2386,10 +2309,13 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
 }
 @media (max-width: 640px) {
-  .ed-section { padding: 4rem 1.5rem; }
+  .ed-section { padding: 3rem 1.25rem; }
 }
 
 .ed-section-last { padding-bottom: 12rem; }
+@media (max-width: 640px) {
+  .ed-section-last { padding-bottom: 6rem; }
+}
 
 .ed-section-head {
   display: flex;
@@ -2398,6 +2324,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 4rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--sp-surface-border);
+}
+@media (max-width: 640px) {
+  .ed-section-head { margin-bottom: 2.5rem; padding-bottom: 1rem; }
 }
 
 .ed-section-title {
@@ -2434,14 +2363,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 .ed-research-item:last-child { border-bottom: none; }
 @media (max-width: 768px) {
-  .ed-research-item { grid-template-columns: 1fr; gap: 1.25rem; padding: 2rem 0; }
+  .ed-research-item { grid-template-columns: 1fr; gap: 1rem; padding: 2rem 0; }
 }
 
 .ed-research-left {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
   padding-top: 0.375rem;
+  align-items: baseline;
+}
+@media (max-width: 768px) {
+  .ed-research-left { flex-direction: row; gap: 0.75rem; }
 }
 
 .ed-research-num {
@@ -2492,6 +2425,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.25rem;
   max-width: 34rem;
 }
+@media (max-width: 640px) {
+  .ed-research-desc { font-size: 0.75rem; margin-bottom: 1rem; }
+}
 
 .ed-research-tags {
   display: flex;
@@ -2533,6 +2469,9 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   padding: 1.25rem 0 2rem 1.75rem;
 }
+@media (max-width: 640px) {
+  .ed-tl-item { padding: 1rem 0 1.5rem 1.25rem; }
+}
 
 .ed-tl-dot {
   position: absolute;
@@ -2544,6 +2483,9 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(-1px);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+@media (max-width: 640px) {
+  .ed-tl-dot { left: -2rem; top: 1.25rem; width: 5px; height: 5px; }
+}
 
 .ed-tl-dot-edu { background: var(--sp-accent); }
 .ed-tl-dot-comp { background: var(--sp-brand); }
@@ -2554,6 +2496,9 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0.25rem 0 0.25rem 1.75rem;
   background: var(--sp-surface-border);
   opacity: 0.5;
+}
+@media (max-width: 640px) {
+  .ed-tl-sep { margin-left: 1.25rem; }
 }
 
 .ed-tl-period {
@@ -2574,12 +2519,18 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.25rem;
   letter-spacing: 0.02em;
 }
+@media (max-width: 640px) {
+  .ed-tl-title { font-size: 0.875rem; }
+}
 
 .ed-tl-sub {
   font-size: 0.6875rem;
   color: var(--sp-accent);
   margin-bottom: 0.75rem;
   letter-spacing: 0.02em;
+}
+@media (max-width: 640px) {
+  .ed-tl-sub { font-size: 0.625rem; margin-bottom: 0.5rem; }
 }
 
 .ed-tl-desc {
@@ -2588,6 +2539,9 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--sp-muted);
   margin-bottom: 0.75rem;
   max-width: 34rem;
+}
+@media (max-width: 640px) {
+  .ed-tl-desc { font-size: 0.75rem; max-width: 100%; }
 }
 
 .ed-tl-tags {
@@ -2622,6 +2576,9 @@ h1, h2, h3, h4, h5, h6 {
   border-left: 1px solid var(--sp-surface-border);
   padding-left: 1rem;
 }
+@media (max-width: 640px) {
+  .ed-tl-insight { font-size: 0.6875rem; max-width: 100%; padding-left: 0.75rem; }
+}
 
 /* ====== Skills — Capabilities ====== */
 
@@ -2639,6 +2596,9 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
 }
 .ed-skill-row:last-child { border-bottom: none; }
+@media (max-width: 640px) {
+  .ed-skill-row { gap: 1rem; padding: 0.75rem 0; }
+}
 
 .ed-skill-cat {
   font-size: 0.5rem;
@@ -2650,11 +2610,17 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
   opacity: 0.7;
 }
+@media (max-width: 640px) {
+  .ed-skill-cat { min-width: 4.5rem; font-size: 0.4375rem; }
+}
 
 .ed-skill-items {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+@media (max-width: 640px) {
+  .ed-skill-items { gap: 0.75rem; }
 }
 
 .ed-skill-chip {
@@ -2664,181 +2630,404 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.55;
   transition: opacity 0.5s ease;
 }
+@media (max-width: 640px) {
+  .ed-skill-chip { font-size: 0.75rem; }
+}
 .ed-skill-chip:hover {
   opacity: 0.9;
 }
 
-/* ====== Spaces — Portals ====== */
+/* ========================================
+   17. Reflection / Thinking — Full-screen Slides
+   ======================================== */
 
-.ed-spaces {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0;
-}
-
-.ed-space-card {
-  display: block;
-  text-decoration: none;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--sp-surface-border);
-  transition: padding-left 0.5s ease;
-}
-.ed-space-card:hover {
-  padding-left: 0.75rem;
-}
-
-.ed-space-name {
-  display: block;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  color: var(--sp-text);
-  margin-bottom: 0.375rem;
-  letter-spacing: 0.06em;
-  transition: color 0.4s ease;
-}
-.ed-space-card:hover .ed-space-name {
-  color: var(--sp-brand);
-}
-
-.ed-space-desc {
-  font-size: 0.625rem;
-  color: var(--sp-muted);
-  letter-spacing: 0.06em;
-  opacity: 0.6;
-}
-
-/* ====== Panel — Paper & Warm Shadow ====== */
-
-.ed-panel-overlay {
+.refl-hero-bg {
   position: fixed;
   inset: 0;
-  z-index: 9998;
-  background: rgba(6,5,4,0.75);
-  backdrop-filter: blur(12px);
+  z-index: 0;
+  overflow: hidden;
 }
 
-.ed-panel-wrapper {
-  position: fixed;
+.refl-hero-bg-img {
+  position: absolute;
   inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.2) saturate(0.25) contrast(1.1);
   pointer-events: none;
 }
 
-.ed-panel-card {
-  position: relative;
-  width: 100%;
-  max-width: 460px;
-  background: var(--sp-surface);
-  border: 1px solid var(--sp-surface-border);
-  border-radius: 2px;
-  pointer-events: auto;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3), 0 0 0 1px rgba(138,126,114,0.04);
+.refl-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--sp-bg) 0%, rgba(12,11,9,0.7) 40%, rgba(12,11,9,0.4) 100%);
+  pointer-events: none;
 }
 
-.ed-panel-close {
-  position: absolute;
+.refl-back-link {
+  position: fixed;
   top: 1.25rem;
-  right: 1.25rem;
+  left: 1.5rem;
+  z-index: 50;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--sp-muted);
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.refl-back-link:hover { opacity: 1; }
+
+.refl-content {
+  position: relative;
   z-index: 10;
-  width: 28px;
-  height: 28px;
+}
+
+.refl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.refl-card {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 1.5rem 0;
+}
+
+.refl-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  color: inherit;
+}
+
+.refl-card-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.refl-card-num {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--sp-accent);
+  opacity: 0.6;
+  padding-top: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.refl-card-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--sp-text);
+  font-family: var(--font-reading);
+  margin-bottom: 0.375rem;
+}
+
+.refl-card-meta {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: none;
-  background: none;
+  gap: 0.75rem;
+}
+
+.refl-card-date {
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
   color: var(--sp-muted);
-  cursor: pointer;
-  transition: color 0.4s ease, opacity 0.4s ease;
   opacity: 0.5;
 }
-.ed-panel-close:hover {
+
+.refl-card-tag {
+  font-size: 0.4375rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sp-accent);
+  opacity: 0.5;
+}
+
+.refl-card-toggle {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--sp-muted);
+  opacity: 0.4;
+  line-height: 1;
+  padding-top: 0.25rem;
+}
+
+.refl-card-header:hover .refl-card-toggle {
+  opacity: 0.8;
+}
+
+.refl-card-preview {
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  color: var(--sp-muted);
+  margin-top: 0.75rem;
+  padding-left: 2.5rem;
+  letter-spacing: 0.02em;
+}
+
+.refl-card-body {
+  padding-left: 2.5rem;
+  padding-top: 1rem;
+}
+
+.refl-card-rule {
+  width: 24px;
+  height: 1px;
+  background: var(--sp-accent);
+  opacity: 0.4;
+  margin-bottom: 1rem;
+}
+
+.refl-card-text {
+  font-size: 0.875rem;
+  line-height: 2;
+  color: var(--sp-text);
+  opacity: 0.75;
+  letter-spacing: 0.02em;
+  max-width: 40rem;
+}
+
+@media (max-width: 640px) {
+  .refl-card-left { gap: 0.75rem; }
+  .refl-card-preview { padding-left: 0; }
+  .refl-card-body { padding-left: 0; }
+  .refl-card-title { font-size: 1rem; }
+  .refl-card-text { font-size: 0.8125rem; line-height: 1.9; }
+}
+
+/* ========================================
+   18. Poetry Author Page — Reading Room
+   ======================================== */
+
+.poet-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+@media (min-width: 768px) {
+  .poet-page { padding: 4rem 3rem 8rem; }
+}
+
+.poet-hero {
+  position: relative;
+  width: 100%;
+  min-height: 55vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.poet-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.38) saturate(0.65) contrast(1.1);
+  pointer-events: none;
+}
+
+.poet-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--sp-bg) 0%, rgba(8,6,4,0.4) 50%, rgba(8,6,4,0.15) 100%);
+  pointer-events: none;
+}
+
+.poet-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .poet-hero-content { padding: 0 3rem 4rem; }
+}
+
+.poet-back {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sp-muted);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  padding: 0.5rem 0;
+}
+.poet-back:hover { opacity: 1; }
+
+.poet-name {
+  font-size: clamp(48px, 10vw, 100px);
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  color: var(--sp-text);
+  font-family: var(--font-reading);
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  margin-bottom: 0.75rem;
+}
+
+.poet-count {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--sp-accent);
+  opacity: 0.6;
+}
+
+.poet-body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 4rem;
+  min-height: 60vh;
+}
+@media (max-width: 768px) {
+  .poet-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.poet-nav {
+  position: sticky;
+  top: 5rem;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+@media (max-width: 768px) {
+  .poet-nav {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+}
+
+.poet-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.625rem 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .poet-nav-item {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--sp-surface-border);
+    width: auto;
+  }
+}
+
+.poet-nav-num {
+  font-size: 0.4375rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--sp-muted);
+  opacity: 0.3;
+  min-width: 1.25rem;
+  transition: opacity 0.3s;
+}
+
+.poet-nav-title {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--sp-muted);
+  letter-spacing: 0.04em;
+  transition: color 0.3s, opacity 0.3s;
+  opacity: 0.5;
+  font-family: var(--font-reading);
+}
+
+.poet-nav-item:hover .poet-nav-title {
+  color: var(--sp-text);
+  opacity: 0.8;
+}
+
+.poet-nav-active .poet-nav-num {
+  opacity: 0.8;
+  color: var(--sp-accent);
+}
+
+.poet-nav-active .poet-nav-title {
   color: var(--sp-text);
   opacity: 1;
 }
 
-.ed-panel-body {
-  padding: 2.5rem;
+.poet-nav-active {
+  border-bottom-color: var(--sp-accent);
 }
 
-.ed-panel-formula {
-  font-size: 0.875rem;
-  font-family: var(--font-display);
+.poet-reading {
+  display: flex;
+  align-items: flex-start;
+  min-height: 50vh;
+}
+
+.poet-poem {
+  width: 100%;
+}
+
+.poet-poem-title {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
   color: var(--sp-text);
-  opacity: 0.12;
-  margin-bottom: 2rem;
-  letter-spacing: 0.02em;
+  font-family: var(--font-reading);
+  margin-bottom: 0.5rem;
 }
 
-.ed-panel-name {
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: var(--sp-text);
-  margin-bottom: 0.375rem;
-  letter-spacing: 0.02em;
-}
-
-.ed-panel-role {
+.poet-poem-author {
   font-size: 0.6875rem;
   color: var(--sp-accent);
-  margin-bottom: 1.25rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1em;
+  margin-bottom: 2.5rem;
+  opacity: 0.7;
 }
 
-.ed-panel-desc {
-  font-size: 0.8125rem;
-  line-height: 1.9;
-  color: var(--sp-muted);
-  margin-bottom: 1.25rem;
+.poet-poem-body {
+  padding-left: 2rem;
+  border-left: 1px solid var(--sp-surface-border);
 }
 
-.ed-panel-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem;
-  margin-bottom: 1.25rem;
-}
-
-.ed-panel-tag {
-  font-size: 0.5rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--sp-muted);
-  opacity: 0.6;
-}
-
-.ed-panel-tag::before {
-  content: "#";
-  opacity: 0.4;
-}
-
-.ed-panel-insight {
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--sp-surface-border);
-  margin-bottom: 0.75rem;
-}
-
-.ed-panel-insight p {
-  font-size: 0.8125rem;
-  line-height: 1.8;
+.poet-poem-line {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 2.4;
   color: var(--sp-text);
-  opacity: 0.55;
-  font-style: italic;
   font-family: var(--font-reading);
+  opacity: 0.85;
+  letter-spacing: 0.06em;
 }
 
-.ed-panel-note {
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--sp-surface-border);
-}
-
-.ed-panel-note p {
-  font-size: 0.8125rem;
-  line-height: 1.9;
-  color: var(--sp-muted);
+.poet-poem-gap {
+  height: 1.25rem;
 }
 

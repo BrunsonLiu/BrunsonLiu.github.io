@@ -1,86 +1,97 @@
 "use client";
-import { motion } from "framer-motion";
-import { SlowIn, FadeIn, SectionLabel } from "../components/space";
+import { useState } from "react";
+import { FadeIn, AccentLine } from "../components/space";
 import { places, notes } from "../data/voyage";
 import Link from "next/link";
 
 export default function VoyagePage() {
+  const [activePlace, setActivePlace] = useState(0);
+
   return (
     <div className="space-voyage min-h-screen pt-16">
       <div className="space-grain" />
 
-      <div className="voyage-container">
-        <SlowIn>
-          <Link href="/" prefetch={false} className="voyage-back-link">
-            ← 首页
+      <div className="px-6 lg:px-8 py-24" style={{ maxWidth: "var(--max-width)", margin: "0 auto" }}>
+        <FadeIn>
+          <Link href="/" prefetch={false} className="text-[10px] font-medium uppercase tracking-[0.4em] inline-block mb-16 transition-opacity duration-300 hover:opacity-60"
+            style={{ color: "var(--sp-muted)" }}>
+            ← 空间
           </Link>
-        </SlowIn>
+        </FadeIn>
 
-        <SlowIn delay={0.06}>
-          <p className="voyage-eyebrow">空间 04 — 旅行</p>
-        </SlowIn>
-
-        <SlowIn delay={0.12}>
-          <h1 className="voyage-title">旅行。</h1>
-        </SlowIn>
-
-        <SlowIn delay={0.2}>
-          <p className="voyage-subtitle">
-            出发，到达，再出发。
+        <FadeIn delay={0.1}>
+          <p className="text-[10px] font-medium uppercase tracking-[0.4em] mb-4" style={{ color: "var(--sp-muted)", opacity: 0.5 }}>
+            空间 04
           </p>
-        </SlowIn>
+          <h1 className="mb-4" style={{
+            fontSize: "clamp(32px, 5vw, 56px)",
+            fontWeight: 300, lineHeight: 1.2, letterSpacing: "0.08em",
+            color: "var(--sp-text)", fontFamily: "var(--font-reading)",
+          }}>
+            旅行
+          </h1>
+        </FadeIn>
 
-        <SlowIn delay={0.3}>
-          <div className="voyage-intro-grid">
-            <p className="voyage-intro-text">
-              旅行不是打卡，不是朋友圈素材。就是换个地方待着，看看不一样的路。
-            </p>
-            <p className="voyage-intro-text">
-              城市待久了人会钝。出去走走，不是逃避，是重新校准。在路上的时候脑子最清楚。
-            </p>
-          </div>
-        </SlowIn>
+        <FadeIn delay={0.2}>
+          <AccentLine width="32px" />
+          <p className="text-sm leading-relaxed max-w-sm mb-16" style={{ color: "var(--sp-muted)", letterSpacing: "0.04em" }}>
+            一叶浮萍归大海，为人何处不相逢。
+          </p>
+        </FadeIn>
 
-        <SlowIn delay={0.1}>
-          <SectionLabel>记忆的坐标</SectionLabel>
-        </SlowIn>
-        <div className="voyage-places-grid">
+        <FadeIn delay={0.1}>
+          <p className="text-[10px] font-medium uppercase tracking-[0.3em] mb-6" style={{ color: "var(--sp-accent)", opacity: 0.6 }}>
+            去过
+          </p>
+        </FadeIn>
+
+        <div className="voyage-places-row">
           {places.map((place, i) => (
-            <FadeIn key={place.name} delay={i * 0.06}>
-              <div className="voyage-place-card">
-                <div className="voyage-place-img-wrap">
-                  <img
-                    src={place.image}
-                    alt={place.name}
-                    className="voyage-place-img"
-                    loading="lazy"
-                    draggable={false}
-                  />
-                  <div className="voyage-place-img-overlay" />
-                  <h3 className="voyage-place-name">{place.name}</h3>
-                </div>
-                <p className="voyage-place-feeling">
-                  {place.feeling.length > 100
-                    ? place.feeling.slice(0, 100) + "…"
-                    : place.feeling}
-                </p>
-              </div>
-            </FadeIn>
+            <button
+              key={place.name}
+              className={`voyage-place-tab ${i === activePlace ? "voyage-place-tab-active" : ""}`}
+              onClick={() => setActivePlace(i)}
+            >
+              {place.name}
+            </button>
           ))}
         </div>
 
-        <SlowIn delay={0.1}>
-          <SectionLabel>旅行笔记</SectionLabel>
-        </SlowIn>
-        <div className="voyage-notes-grid">
+        <div className="voyage-place-detail">
+          <div className="voyage-place-detail-img-wrap">
+            <img
+              src={places[activePlace].image}
+              alt={places[activePlace].name}
+              className="voyage-place-detail-img"
+              draggable={false}
+            />
+          </div>
+          <div className="voyage-place-detail-text">
+            <h2 className="voyage-place-detail-name">{places[activePlace].name}</h2>
+            <p className="voyage-place-detail-feeling">{places[activePlace].feeling}</p>
+          </div>
+        </div>
+
+        <div style={{ height: "4rem" }} />
+
+        <FadeIn>
+          <p className="text-[10px] font-medium uppercase tracking-[0.3em] mb-6" style={{ color: "var(--sp-accent)", opacity: 0.6 }}>
+            随想
+          </p>
+        </FadeIn>
+
+        <div className="voyage-notes-list">
           {notes.map((note, i) => (
-            <FadeIn key={i} delay={i * 0.06}>
-              <div className="voyage-note-card">
+            <FadeIn key={i} delay={0.04 * i}>
+              <div className="voyage-note-row">
+                <span className="voyage-note-num">{String(i + 1).padStart(2, "0")}</span>
                 <p className="voyage-note-text">{note}</p>
               </div>
             </FadeIn>
           ))}
         </div>
+
+        <div style={{ height: "120px" }} />
       </div>
     </div>
   );

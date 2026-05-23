@@ -1,6 +1,6 @@
 import { poems } from "../data/literature";
 
-export function getMajorAuthors(minCount = 2) {
+export function getMajorAuthors(minCount = 1) {
   const countMap = {};
   poems.forEach((p) => {
     countMap[p.author] = (countMap[p.author] || 0) + 1;

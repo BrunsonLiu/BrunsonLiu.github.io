@@ -7,22 +7,19 @@ const pavilions = [
     title: "诗词",
     subtitle: "Poetry",
     href: "/literature/poetry",
-    excerpt: "山河、时间、留白。中国诗意的空间。",
-    mood: "卷轴 · 墨迹 · 山水",
+    excerpt: "俱往矣，数风流人物，还看今朝。",
   },
   {
     title: "书",
     subtitle: "Books",
     href: "/literature/books",
-    excerpt: "一个人的精神书架。精选，而非堆积。",
-    mood: "纸页 · 批注 · 安静",
+    excerpt: "人是为了活着本身而活着，而不是为了活着之外的任何事物。",
   },
   {
     title: "电影",
     subtitle: "Cinema",
     href: "/literature/cinema",
-    excerpt: "黑暗中的光。剧场感，不是豆瓣列表。",
-    mood: "银幕 · 黑场 · 24帧",
+    excerpt: "Hope is a good thing, maybe the best of things, and no good thing ever dies.",
   },
 ];
 
@@ -51,7 +48,7 @@ export default function LiteraturePage() {
         <SlowIn delay={0.2}>
           <div style={{ width: "48px", height: "1px", background: "var(--sp-accent)", marginBottom: "1.5rem" }} />
           <p className="text-base leading-relaxed max-w-lg mb-32" style={{ color: "var(--sp-muted)" }}>
-            三个独立展馆。诗词、书、电影——各自有呼吸的节奏。
+            好男儿志在四方！
           </p>
         </SlowIn>
 
@@ -87,10 +84,6 @@ export default function LiteraturePage() {
                     </p>
                   </div>
                   <div className="flex items-center gap-6 flex-shrink-0">
-                    <span className="text-[10px] font-medium uppercase tracking-[0.3em]"
-                      style={{ color: "var(--sp-muted)" }}>
-                      {p.mood}
-                    </span>
                     <span className="text-sm transition-transform duration-500 group-hover:translate-x-2"
                       style={{ color: "var(--sp-accent)" }}>
                       →

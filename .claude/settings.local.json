@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx next *)",
+      "Bash(grep -E \"^\\\\├ ○ \\\\/$|^\\\\├ ● \\\\/$|^○ \\\\/$|^● \\\\/\")",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(gh run *)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}
