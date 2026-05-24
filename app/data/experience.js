@@ -1,5 +1,6 @@
 export const competitions = [
   {
+    slug: "mcm-icm",
     title: "MCM/ICM",
     subtitle: "美赛 · Finalist",
     desc: "美国大学生数学建模大赛特等奖提名，全球前1%",
@@ -10,6 +11,7 @@ export const competitions = [
     note: "三天三夜建模，从奥运奖牌预测到贝叶斯优化，比任何考试都考验团队协作",
   },
   {
+    slug: "operations-research",
     title: "中国运筹学会竞赛",
     subtitle: "运筹优化 · 队长",
     desc: "生鲜冷链仓网布局优化，担任队长与核心建模手",
@@ -20,6 +22,7 @@ export const competitions = [
     note: "第一次当队长，协调建模、编程、论文三线并行，比解题本身更考验人",
   },
   {
+    slug: "shuwei-cup",
     title: "数维杯国际赛",
     subtitle: "数学建模 · Finalist",
     desc: "空间插值与地理数据分析",
@@ -33,6 +36,7 @@ export const competitions = [
 
 export const internships = [
   {
+    slug: "cxmt",
     title: "CXMT",
     subtitle: "长鑫存储 · 运筹优化算法",
     desc: "复杂电路多目标黑盒优化，多保真贝叶斯优化 + NSGA2 算法",
@@ -43,6 +47,7 @@ export const internships = [
     note: "第一次把优化模型跑在芯片设计数据上，20维参数空间的黑盒优化，比课本里的问题刺激100倍",
   },
   {
+    slug: "shuibao",
     title: "丝宝实业",
     subtitle: "数据分析",
     desc: "巨量千川投流优化、用户画像建模、时间序列预测",

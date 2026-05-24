@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿export default function ResearchLayout({ children }) {
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿export default function ResearchLayout({ children }) {
   return (
     <div className="space-academic min-h-screen pt-16">
       <div className="space-grain" />

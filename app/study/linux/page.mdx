@@ -1,0 +1,90 @@
+# Linux 实战笔记
+
+不是教程，是我实际用到的命令和场景。
+
+## 文件与目录
+
+```bash
+# 查找文件
+find / -name "*.py" -mtime -7          # 7天内修改过的py文件
+find . -type f -size +100M              # 找大文件
+du -sh * | sort -rh | head -10          # 当前目录占用Top10
+
+# 批量操作
+ls *.jpg | xargs -I {} mv {} images/    # 批量移动
+for f in *.csv; do head -1 "$f"; done   # 看所有csv的表头
+```
+
+## 进程管理
+
+```bash
+# GPU相关
+nvidia-smi                              # 查看GPU状态
+watch -n 1 nvidia-smi                   # 每秒刷新
+fuser -v /dev/nvidia*                   # 谁在用GPU
+kill -9 $(nvidia-smi | grep python | awk '{print $5}')  # 杀掉所有python进程
+
+# 后台任务
+nohup python train.py > log.txt 2>&1 &  # 后台训练
+jobs -l                                  # 查看后台任务
+fg %1                                    # 拿回前台
+```
+
+## SSH与远程
+
+```bash
+# 免密登录
+ssh-keygen -t ed25519
+ssh-copy-id user@server
+
+# 端口转发（访问远程jupyter）
+ssh -L 8888:localhost:8888 user@server
+
+# 传文件
+scp -r ./project user@server:~/workspace/
+rsync -avz --progress ./data/ user@server:~/data/  # 增量同步
+```
+
+## Docker
+
+```bash
+# 基本操作
+docker build -t myapp .                 # 构建镜像
+docker run --gpus all -it myapp bash    # GPU容器
+docker exec -it container_id bash       # 进入运行中的容器
+docker ps -a                            # 所有容器
+
+# 清理
+docker system prune -a                  # 清理所有无用资源
+docker volume prune                     # 清理volume
+```
+
+## 文本处理
+
+```bash
+# 日志分析
+grep "error" log.txt | wc -l           # 统计错误数
+awk '{print $1}' access.log | sort | uniq -c | sort -rn | head  # IP访问排行
+sed -i 's/old/new/g' config.yaml       # 批量替换
+
+# CSV处理
+cut -d',' -f1,3 data.csv               # 提取列
+sort -t',' -k2 -n data.csv             # 按第二列数值排序
+```
+
+## 磁盘与权限
+
+```bash
+df -h                                   # 磁盘使用
+chmod 600 ~/.ssh/id_rsa                # SSH密钥权限
+chown -R user:group /path              # 改所有者
+ln -s /data/models ~/models            # 软链接
+```
+
+## 我踩过的坑
+
+- `rm -rf` 之前先 `ls` 确认路径，特别是用变量的时候
+- `nohup` 的输出重定向别忘了 `2>&1`，不然stderr丢到终端
+- Docker容器里改了代码但没生效？检查是不是用了volume覆盖
+- `crontab` 里路径要用绝对路径，环境变量和交互式shell不一样
+- 大文件用 `less` 而不是 `cat`，`cat` 会把整个文件读进内存

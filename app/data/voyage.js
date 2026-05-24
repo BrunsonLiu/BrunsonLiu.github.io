@@ -15,9 +15,9 @@ export const places = [
     image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=serene%20lake%20at%20dawn%20in%20China%2C%20mist%20rising%20from%20still%20water%2C%20vast%20sky%20reflected%2C%20muted%20natural%20tones%2C%20cinematic%20wide%20shot%2C%20editorial%20photography%2C%2035mm%20film&image_size=landscape_16_9",
   },
   {
-    name: "杭州",
-    feeling: "秋天去过一次西湖，确实像画里一样。",
-    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=West%20Lake%20Hangzhou%20in%20autumn%20mist%2C%20traditional%20Chinese%20landscape%20feel%2C%20muted%20golden%20tones%2C%20cinematic%20wide%20composition%2C%20editorial%20photography%2C%2035mm%20film&image_size=landscape_16_9",
+    name: "大连",
+    feeling: "有海。风大。海鲜便宜。",
+    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Dalian%20coastal%20city%20sea%20view%2C%20rocky%20shore%20with%20waves%2C%20overcast%20sky%2C%20wide%20cinematic%20composition%2C%20muted%20cool%20blue%20tones%2C%20editorial%20photography%2C%2035mm%20film&image_size=landscape_16_9",
   },
 ];
 

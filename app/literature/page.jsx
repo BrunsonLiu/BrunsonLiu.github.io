@@ -1,5 +1,5 @@
 "use client";
-import { SlowIn } from "../components/space";
+import { SlowIn, FadeIn } from "../components/space";
 import Link from "next/link";
 
 const pavilions = [
@@ -25,36 +25,50 @@ const pavilions = [
 
 export default function LiteraturePage() {
   return (
-    <div className="space-literature min-h-screen pt-16">
+    <div className="space-literature min-h-screen">
       <div className="space-grain" />
 
-      <div className="px-6 lg:px-8 py-24" style={{ maxWidth: "var(--max-width)", margin: "0 auto" }}>
-        <SlowIn>
-          <p className="text-[10px] font-medium uppercase tracking-[0.4em] mb-16" style={{ color: "var(--sp-muted)" }}>
-            空间 02 — 文学
-          </p>
-        </SlowIn>
+      <div className="lit-hero">
+        <img
+          src="/literature-bg.png"
+          alt=""
+          className="lit-hero-img"
+          draggable={false}
+        />
+        <div className="lit-hero-overlay" />
+        <div className="lit-hero-content">
+          <SlowIn>
+            <Link href="/" prefetch={false} className="text-[10px] font-medium uppercase tracking-[0.4em] inline-block mb-6 transition-opacity duration-300 hover:opacity-60"
+              style={{ color: "var(--sp-muted)" }}>
+              ← 空间
+            </Link>
+          </SlowIn>
+          <SlowIn delay={0.1}>
+            <p className="text-[10px] font-medium uppercase tracking-[0.4em] mb-4" style={{ color: "var(--sp-muted)", opacity: 0.5 }}>
+              空间 02
+            </p>
+            <h1 className="mb-4" style={{
+              fontSize: "clamp(40px, 7vw, 72px)",
+              fontWeight: 300, lineHeight: 1.05, letterSpacing: "0.06em",
+              color: "var(--sp-text)", fontFamily: "var(--font-reading)",
+              textShadow: "0 2px 30px rgba(0,0,0,0.5)",
+            }}>
+              文学空间
+            </h1>
+          </SlowIn>
+          <SlowIn delay={0.2}>
+            <div style={{ width: "32px", height: "1px", background: "var(--sp-accent)", marginBottom: "1rem" }} />
+            <p className="text-sm leading-relaxed max-w-sm" style={{ color: "var(--sp-muted)", letterSpacing: "0.04em" }}>
+              好男儿志在四方！
+            </p>
+          </SlowIn>
+        </div>
+      </div>
 
-        <SlowIn delay={0.1}>
-          <h1 className="mb-6" style={{
-            fontSize: "clamp(36px, 6vw, 64px)",
-            fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.02em",
-            color: "var(--sp-text)", fontFamily: "var(--font-reading)",
-          }}>
-            文学空间。
-          </h1>
-        </SlowIn>
-
-        <SlowIn delay={0.2}>
-          <div style={{ width: "48px", height: "1px", background: "var(--sp-accent)", marginBottom: "1.5rem" }} />
-          <p className="text-base leading-relaxed max-w-lg mb-32" style={{ color: "var(--sp-muted)" }}>
-            好男儿志在四方！
-          </p>
-        </SlowIn>
-
+      <div className="px-6 lg:px-8 py-16" style={{ maxWidth: "var(--max-width)", margin: "0 auto" }}>
         <div className="space-y-0">
           {pavilions.map((p, i) => (
-            <SlowIn key={p.title} delay={0.1 * i}>
+            <FadeIn key={p.title} delay={0.08 * i}>
               <Link href={p.href} prefetch={false} className="block group">
                 <div className="py-10 px-2 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3 transition-all duration-700"
                   style={{ borderBottom: "1px solid var(--sp-surface-border)" }}>
@@ -91,7 +105,7 @@ export default function LiteraturePage() {
                   </div>
                 </div>
               </Link>
-            </SlowIn>
+            </FadeIn>
           ))}
         </div>
       </div>

@@ -72,25 +72,6 @@ export default function VoyagePage() {
           </div>
         </div>
 
-        <div style={{ height: "4rem" }} />
-
-        <FadeIn>
-          <p className="text-[10px] font-medium uppercase tracking-[0.3em] mb-6" style={{ color: "var(--sp-accent)", opacity: 0.6 }}>
-            随想
-          </p>
-        </FadeIn>
-
-        <div className="voyage-notes-list">
-          {notes.map((note, i) => (
-            <FadeIn key={i} delay={0.04 * i}>
-              <div className="voyage-note-row">
-                <span className="voyage-note-num">{String(i + 1).padStart(2, "0")}</span>
-                <p className="voyage-note-text">{note}</p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-
         <div style={{ height: "120px" }} />
       </div>
     </div>

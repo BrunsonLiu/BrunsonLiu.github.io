@@ -1,7 +1,7 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
 import { motion } from "framer-motion";
 import { PokerFlipCard, PokerFlipGrid } from "../components/poker-flip";
-import { FaSquareRootAlt, FaChartLine, FaBrain, FaUsersCog, FaProjectDiagram } from "react-icons/fa";
+import { FaSquareRootAlt, FaChartLine, FaBrain, FaUsersCog, FaProjectDiagram, FaLinux, FaLightbulb } from "react-icons/fa";
 import { SpringEnter } from "../components/theme-easter-eggs";
 
 const studyTopics = [
@@ -54,6 +54,26 @@ const studyTopics = [
     backContent: "跨界的乐趣在于：用A领域的方法，解决B领域的难题",
     tags: ["数据科学", "金融工程", "生物信息"],
     formula: "f: X → Y",
+  },
+  {
+    title: "Linux",
+    subtitle: "Linux实战",
+    description: "服务器、Docker、命令行",
+    href: "/study/linux",
+    icon: <FaLinux size={32} />,
+    backContent: "不是教程，是我实际用到的命令和踩过的坑",
+    tags: ["Shell", "Docker", "SSH", "GPU"],
+    formula: "$ sudo",
+  },
+  {
+    title: "First Principles",
+    subtitle: "第一性原理",
+    description: "从基本事实出发思考",
+    href: "/study/first-principles",
+    icon: <FaLightbulb size={32} />,
+    backContent: "不依赖类比和经验，从最基本的约束重新推导结论",
+    tags: ["思维模型", "拆解", "质疑假设"],
+    formula: "∴ QED",
   },
 ];
 

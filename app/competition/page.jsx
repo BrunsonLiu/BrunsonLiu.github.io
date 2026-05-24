@@ -1,6 +1,7 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
+"use client";
 import { FadeIn, SectionLabel } from "../components/space";
 import { competitions, internships } from "../data/experience";
+import Link from "next/link";
 
 export default function CompetitionPage() {
   return (
@@ -27,32 +28,41 @@ export default function CompetitionPage() {
         <FadeIn delay={0.2}>
           <div style={{ width: "64px", height: "1px", background: "var(--sp-accent)", marginBottom: "1.5rem" }} />
           <p className="text-base leading-relaxed max-w-lg mb-24" style={{ color: "var(--sp-muted)" }}>
-            数学建模与运筹优化的实战检验。每一次都是对问题建模和团队协作的压力测试。
+            数学建模与运筹优化的实战检验。每一次都是对问题建模和团队协作的压力测试。点击卡片查看详细经历。
           </p>
         </FadeIn>
 
         <div className="space-y-12">
           {competitions.map((comp, i) => (
             <FadeIn key={comp.title} delay={i * 0.1}>
-              <div className="p-8" style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)" }}>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {comp.stats.map((s) => (
-                    <span key={s} className="text-[10px] font-bold uppercase tracking-[0.2em] px-2 py-1"
-                      style={{ background: "rgba(230,57,70,0.1)", color: "var(--sp-accent)" }}>{s}</span>
-                  ))}
+              <Link href={`/competition/${comp.slug}`} className="block group">
+                <div className="p-8 transition-all duration-300 hover:translate-x-1" style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)" }}>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {comp.stats.map((s) => (
+                      <span key={s} className="text-[10px] font-bold uppercase tracking-[0.2em] px-2 py-1"
+                        style={{ background: "rgba(230,57,70,0.1)", color: "var(--sp-accent)" }}>{s}</span>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="min-w-0">
+                      <h2 className="text-xl font-bold mb-1 group-hover:opacity-80 transition-opacity" style={{ color: "var(--sp-text)" }}>{comp.title}</h2>
+                      <p className="text-xs mb-4" style={{ color: "var(--sp-accent)" }}>{comp.subtitle}</p>
+                      <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-muted)" }}>{comp.desc}</p>
+                      <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-text)", opacity: 0.8 }}>{comp.note}</p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {comp.tags.map((tag) => (
+                          <span key={tag} className="text-xs px-3 py-1"
+                            style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)", color: "var(--sp-accent)" }}>{tag}</span>
+                        ))}
+                      </div>
+                      <p className="text-xs font-mono" style={{ color: "var(--sp-brand)", opacity: 0.4 }}>{comp.formula}</p>
+                    </div>
+                    <div className="flex-shrink-0 text-xs font-medium transition-transform duration-300 group-hover:translate-x-1" style={{ color: "var(--sp-accent)" }}>
+                      查看详情 →
+                    </div>
+                  </div>
                 </div>
-                <h2 className="text-xl font-bold mb-1" style={{ color: "var(--sp-text)" }}>{comp.title}</h2>
-                <p className="text-xs mb-4" style={{ color: "var(--sp-accent)" }}>{comp.subtitle}</p>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-muted)" }}>{comp.desc}</p>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-text)", opacity: 0.8 }}>{comp.note}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {comp.tags.map((tag) => (
-                    <span key={tag} className="text-xs px-3 py-1"
-                      style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)", color: "var(--sp-accent)" }}>{tag}</span>
-                  ))}
-                </div>
-                <p className="text-xs font-mono" style={{ color: "var(--sp-brand)", opacity: 0.4 }}>{comp.formula}</p>
-              </div>
+              </Link>
             </FadeIn>
           ))}
         </div>
@@ -66,25 +76,34 @@ export default function CompetitionPage() {
           <div className="space-y-12">
             {internships.map((intern, i) => (
               <FadeIn key={intern.title} delay={i * 0.1}>
-                <div className="p-8" style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)" }}>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {intern.stats.map((s) => (
-                      <span key={s} className="text-[10px] font-bold uppercase tracking-[0.2em] px-2 py-1"
-                        style={{ background: "rgba(230,57,70,0.1)", color: "var(--sp-accent)" }}>{s}</span>
-                    ))}
+                <Link href={`/internship/${intern.slug}`} className="block group">
+                  <div className="p-8 transition-all duration-300 hover:translate-x-1" style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)" }}>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {intern.stats.map((s) => (
+                        <span key={s} className="text-[10px] font-bold uppercase tracking-[0.2em] px-2 py-1"
+                          style={{ background: "rgba(230,57,70,0.1)", color: "var(--sp-accent)" }}>{s}</span>
+                      ))}
+                    </div>
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="min-w-0">
+                        <h2 className="text-xl font-bold mb-1 group-hover:opacity-80 transition-opacity" style={{ color: "var(--sp-text)" }}>{intern.title}</h2>
+                        <p className="text-xs mb-4" style={{ color: "var(--sp-accent)" }}>{intern.subtitle}</p>
+                        <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-muted)" }}>{intern.desc}</p>
+                        <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-text)", opacity: 0.8 }}>{intern.note}</p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {intern.tags.map((tag) => (
+                            <span key={tag} className="text-xs px-3 py-1"
+                              style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)", color: "var(--sp-accent)" }}>{tag}</span>
+                          ))}
+                        </div>
+                        <p className="text-xs font-mono" style={{ color: "var(--sp-brand)", opacity: 0.4 }}>{intern.formula}</p>
+                      </div>
+                      <div className="flex-shrink-0 text-xs font-medium transition-transform duration-300 group-hover:translate-x-1" style={{ color: "var(--sp-accent)" }}>
+                        查看详情 →
+                      </div>
+                    </div>
                   </div>
-                  <h2 className="text-xl font-bold mb-1" style={{ color: "var(--sp-text)" }}>{intern.title}</h2>
-                  <p className="text-xs mb-4" style={{ color: "var(--sp-accent)" }}>{intern.subtitle}</p>
-                  <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-muted)" }}>{intern.desc}</p>
-                  <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-text)", opacity: 0.8 }}>{intern.note}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {intern.tags.map((tag) => (
-                      <span key={tag} className="text-xs px-3 py-1"
-                        style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)", color: "var(--sp-accent)" }}>{tag}</span>
-                    ))}
-                  </div>
-                  <p className="text-xs font-mono" style={{ color: "var(--sp-brand)", opacity: 0.4 }}>{intern.formula}</p>
-                </div>
+                </Link>
               </FadeIn>
             ))}
           </div>
