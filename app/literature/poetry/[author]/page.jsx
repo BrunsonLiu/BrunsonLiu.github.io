@@ -4,7 +4,7 @@ import AuthorClient from "./AuthorClient";
 export function generateStaticParams() {
   const authorSet = new Set();
   poems.forEach((p) => { authorSet.add(p.author); });
-  return Array.from(authorSet).map((author) => ({ author: encodeURIComponent(author) }));
+  return Array.from(authorSet).map((author) => ({ author }));
 }
 
 export default async function AuthorPage({ params }) {
