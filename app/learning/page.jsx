@@ -72,8 +72,20 @@ function EntryCard({ entry, index }) {
 
 export default function LearningPage() {
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const [search, setSearch] = useState("");
 
   const handleClose = useCallback(() => setSelectedTopic(null), []);
+
+  const filteredTopics = search.trim()
+    ? learningTopics.map((topic) => ({
+        ...topic,
+        entries: topic.entries.filter(
+          (e) =>
+            e.insight.toLowerCase().includes(search.toLowerCase()) ||
+            (e.discovery && e.discovery.toLowerCase().includes(search.toLowerCase()))
+        ),
+      })).filter((t) => t.entries.length > 0)
+    : learningTopics;
 
   useEffect(() => {
     function handleKey(e) {
@@ -110,8 +122,28 @@ export default function LearningPage() {
         </SlowIn>
 
         <SlowIn delay={0.3}>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="搜索笔记..."
+            className="learn-search"
+            style={{
+              display: "block",
+              width: "100%",
+              maxWidth: "400px",
+              padding: "8px 14px",
+              marginBottom: "24px",
+              background: "var(--sp-surface)",
+              border: "1px solid var(--sp-surface-border)",
+              borderRadius: "6px",
+              color: "var(--sp-text)",
+              fontSize: "14px",
+              outline: "none",
+            }}
+          />
           <div className="learn-grid">
-            {learningTopics.map((topic, i) => {
+            {filteredTopics.map((topic, i) => {
               const latestEntry = topic.entries[0];
               const entryCount = topic.entries.length;
               const statusCounts = {};

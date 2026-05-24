@@ -7,6 +7,15 @@ import Link from "next/link";
 
 export default function ReflectionPage() {
   const [expandedIdx, setExpandedIdx] = useState(null);
+  const [search, setSearch] = useState("");
+
+  const filteredThoughts = search.trim()
+    ? thoughts.filter((t) =>
+        t.title.toLowerCase().includes(search.toLowerCase()) ||
+        t.excerpt.toLowerCase().includes(search.toLowerCase()) ||
+        t.tags.some((tag) => tag.toLowerCase().includes(search.toLowerCase()))
+      )
+    : thoughts;
 
   return (
     <div className="space-reflection min-h-screen">
@@ -48,13 +57,35 @@ export default function ReflectionPage() {
           <p className="text-sm leading-relaxed max-w-sm mb-4" style={{ color: "var(--sp-muted)", letterSpacing: "0.04em", fontStyle: "italic" }}>
             I think, therefore I am.
           </p>
-          <p className="text-[10px] mb-20" style={{ color: "var(--sp-muted)", opacity: 0.4 }}>
+          <p className="text-[10px] mb-12" style={{ color: "var(--sp-muted)", opacity: 0.4 }}>
             — René Descartes
           </p>
         </FadeIn>
 
+        <FadeIn delay={0.25}>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="搜索思考..."
+            style={{
+              display: "block",
+              width: "100%",
+              maxWidth: "400px",
+              padding: "8px 14px",
+              marginBottom: "24px",
+              background: "var(--sp-surface)",
+              border: "1px solid var(--sp-surface-border)",
+              borderRadius: "6px",
+              color: "var(--sp-text)",
+              fontSize: "14px",
+              outline: "none",
+            }}
+          />
+        </FadeIn>
+
         <div className="refl-list">
-          {thoughts.map((thought, i) => {
+          {filteredThoughts.map((thought, i) => {
             const isExpanded = expandedIdx === i;
             const isLong = thought.excerpt.length > 120;
             const displayText = isExpanded || !isLong

@@ -48,17 +48,14 @@ export default function CinemaPage() {
 
         <FadeIn delay={0.3}>
           <div className="max-w-xl mb-20" style={{ borderLeft: "1px solid var(--sp-surface-border)", paddingLeft: "1.5rem" }}>
-            <p className="text-sm leading-[2.2] mb-4" style={{ color: "var(--sp-text)", opacity: 0.6, fontFamily: "var(--font-reading)" }}>
-              我很早就不看动画片了。小时候跟着我爸看电视，长影频道和电影频道经常放国语的港片——成龙、周星驰，那些九十年代的经典。我爸说，他看周星驰的电影能笑一晚上。后来我自己去网上找，仍然以香港为主。
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-text)", opacity: 0.6, fontFamily: "var(--font-reading)" }}>
+              我很早就不看动画片了。小时候跟着我爸看电视，长影频道和电影频道经常放国语港片——成龙、周星驰，九十年代那批经典。我爸说我看周星驰能笑一晚上。后来我自己上网找片子看，也还是香港电影为主。
             </p>
-            <p className="text-sm leading-[2.2] mb-4" style={{ color: "var(--sp-text)", opacity: 0.6, fontFamily: "var(--font-reading)" }}>
-              初中英语慢慢好起来，我开始在手机上看豆瓣高分电影。那是我第一次知道评分可以判断电影好坏。我直接点开了《肖申克的救赎》——我人都傻了。我当然看过好莱坞大片、漫威、变形金刚，但我从来没看过这种电影：如此优美，如此安静，如此自由。
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sp-text)", opacity: 0.6, fontFamily: "var(--font-reading)" }}>
+              初中英语慢慢好起来，开始在手机上看豆瓣高分电影。那是我第一次知道评分可以判断好坏。点开了《肖申克的救赎》——和以前看的好莱坞大片、漫威、变形金刚完全不一样。原来电影可以这样拍。
             </p>
-            <p className="text-sm leading-[2.2] mb-4" style={{ color: "var(--sp-text)", opacity: 0.6, fontFamily: "var(--font-reading)" }}>
-              后来我疯狂看豆瓣 Top 系列，每一部都让我震撼。我喜欢一个人看电影——不要微信消息，不要 QQ 咳嗽，不要爸妈喊我。关灯，在小屋子里，安静地看。记得第一次看完《星际穿越》，又是那种感觉：你看到这种级别的画面，远远超乎你的想象。
-            </p>
-            <p className="text-xs mt-6" style={{ color: "var(--sp-muted)", letterSpacing: "0.1em", fontStyle: "italic" }}>
-              电影不是消遣，是一个人走进黑暗，然后被光击中。
+            <p className="text-sm leading-relaxed" style={{ color: "var(--sp-text)", opacity: 0.6, fontFamily: "var(--font-reading)" }}>
+              后来就开始系统刷豆瓣高分片单。我喜欢一个人看——关灯，在小屋子里，安静地看完。第一次看完《星际穿越》的感觉到现在还记得：你看到这种级别的画面，远远超乎你的想象。
             </p>
           </div>
         </FadeIn>
