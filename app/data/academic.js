@@ -1,13 +1,19 @@
 export const profile = {
   name: "Brunson",
   role: "算法工程师 & 研究者",
-  bio: "武汉大学管理科学本科，即将进入中国科学技术大学攻读管理科学与工程硕士。专注于 Learning to Optimize、车辆路径问题与运筹学研究。",
+  bio: "武汉大学管理科学本科 → 中国科学技术大学管理科学与工程硕士（2026 入学）。组合优化、车辆路径问题与 Learning to Optimize。",
   keywords: ["Learning to Optimize", "车辆路径优化", "供应链管理", "深度学习"],
+  contacts: {
+    github: { label: "GitHub", url: "https://github.com/BrunsonLiu" },
+    email: { label: "Email", url: "mailto:brunson@brunsonliu.com" },
+    wechat: { label: "公众号", text: "永远别说永远", image: "/wechat-qr.jpg" },
+    cv: { label: "简历 PDF", url: "/武汉大学 刘元辛 中文_0131.pdf" },
+  },
 };
 
 export const education = [
-  { degree: "管理科学与工程 硕士", school: "中国科学技术大学", period: "2026 – 2029" },
   { degree: "管理科学（商业分析） 学士", school: "武汉大学", period: "2022 – 2026" },
+  { degree: "管理科学与工程 硕士", school: "中国科学技术大学", period: "2026 – 2029", status: "next" },
 ];
 
 export const researchAreas = [

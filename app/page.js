@@ -5,16 +5,28 @@ import { profile, education, researchAreas, skills, projects, competitions, inte
 import Link from "next/link";
 
 function ProjectModal({ project, onClose }) {
+  const [imgOk, setImgOk] = useState(true);
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)" }}
       onClick={onClose}>
-      <div className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-lg p-6"
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg"
         style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)" }}
         onClick={(e) => e.stopPropagation()}>
-        <button onClick={onClose} className="absolute top-4 right-4 text-xl leading-none"
-          style={{ color: "var(--sp-muted)" }}>&times;</button>
+        <button onClick={onClose} className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center text-xl leading-none rounded-full"
+          style={{ color: "var(--sp-muted)", background: "var(--sp-surface-border)" }}>&times;</button>
 
+        {project.image && (
+          <div className="w-full h-40 sm:h-52 overflow-hidden rounded-t-lg"
+            style={!imgOk ? { background: "linear-gradient(135deg, #1a1a2a 0%, #2a2a3a 50%, #0a0a1a 100%)" } : {}}>
+            {imgOk && (
+              <img src={project.image} alt={project.title} className="w-full h-full object-cover"
+                onError={() => setImgOk(false)} />
+            )}
+          </div>
+        )}
+
+        <div className="p-6">
         <div className="flex items-center gap-3 mb-2">
           <span className="text-xs font-bold tracking-[0.15em] px-2 py-0.5 rounded"
             style={{ color: "var(--sp-accent)", border: "1px solid var(--sp-accent)33" }}>
@@ -39,6 +51,7 @@ function ProjectModal({ project, onClose }) {
 
         <div className="whitespace-pre-line text-sm leading-relaxed" style={{ color: "var(--sp-muted)" }}>
           {project.detail}
+        </div>
         </div>
       </div>
     </div>
@@ -102,9 +115,30 @@ export default function HomePage() {
             {profile.name}
           </h1>
           <p className="text-base mb-3" style={{ color: "var(--sp-accent)" }}>{profile.role}</p>
-          <p className="text-base leading-relaxed max-w-lg mb-12" style={{ color: "var(--sp-muted)" }}>
+          <p className="text-base leading-relaxed max-w-lg mb-4" style={{ color: "var(--sp-muted)" }}>
             {profile.bio}
           </p>
+          <div className="flex flex-wrap items-center gap-2 mb-12">
+            <a href={profile.contacts.github.url} target="_blank" rel="noopener noreferrer"
+              className="text-xs px-3 py-1.5 rounded transition-opacity duration-200 hover:opacity-70"
+              style={{ border: "1px solid var(--sp-surface-border)", color: "var(--sp-text)" }}>
+              GitHub ↗
+            </a>
+            <a href={profile.contacts.email.url}
+              className="text-xs px-3 py-1.5 rounded transition-opacity duration-200 hover:opacity-70"
+              style={{ border: "1px solid var(--sp-surface-border)", color: "var(--sp-text)" }}>
+              Email
+            </a>
+            <a href={profile.contacts.cv.url} target="_blank" rel="noopener noreferrer"
+              className="text-xs px-3 py-1.5 rounded transition-opacity duration-200 hover:opacity-70"
+              style={{ border: "1px solid var(--sp-surface-border)", color: "var(--sp-text)" }}>
+              简历 PDF ↓
+            </a>
+            <span className="text-xs px-3 py-1.5 rounded"
+              style={{ border: "1px solid var(--sp-surface-border)", color: "var(--sp-muted)" }}>
+              公众号 · {profile.contacts.wechat.text}
+            </span>
+          </div>
         </FadeIn>
 
         <SectionLabel text="教育" />
@@ -114,7 +148,15 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 py-3"
                 style={{ borderBottom: "1px solid var(--sp-surface-border)" }}>
                 <div>
-                  <p className="text-base font-medium" style={{ color: "var(--sp-text)" }}>{edu.degree}</p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-base font-medium" style={{ color: "var(--sp-text)" }}>{edu.degree}</p>
+                    {edu.status === "next" && (
+                      <span className="text-[10px] font-bold tracking-[0.15em] px-1.5 py-0.5 rounded"
+                        style={{ color: "var(--sp-accent)", border: "1px solid var(--sp-accent)33" }}>
+                        NEXT
+                      </span>
+                    )}
+                  </div>
                   <p className="text-sm" style={{ color: "var(--sp-muted)" }}>{edu.school}</p>
                 </div>
                 <span className="text-sm" style={{ color: "var(--sp-muted)" }}>{edu.period}</span>
@@ -142,9 +184,16 @@ export default function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-12">
           {projects.map((proj, i) => (
             <FadeIn key={proj.id} delay={i * 0.05}>
-              <div className="p-4 rounded-md cursor-pointer transition-all duration-200 hover:scale-[1.02] group"
+              <div className="rounded-md cursor-pointer transition-all duration-200 hover:scale-[1.02] group overflow-hidden"
                 style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)" }}
                 onClick={() => setSelectedProj(proj)}>
+                {proj.image && (
+                  <div className="w-full h-32 overflow-hidden" style={{ background: "var(--sp-surface-border)" }}>
+                    <img src={proj.image} alt={proj.title} className="w-full h-full object-cover"
+                      onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                  </div>
+                )}
+                <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs font-bold tracking-[0.1em] px-2 py-0.5 rounded"
                     style={{ color: "var(--sp-accent)", border: "1px solid var(--sp-accent)33" }}>
@@ -169,6 +218,7 @@ export default function HomePage() {
                 </div>
                 <p className="text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity"
                   style={{ color: "var(--sp-accent)" }}>点击查看详情 →</p>
+                </div>
               </div>
             </FadeIn>
           ))}
@@ -204,20 +254,14 @@ export default function HomePage() {
           ))}
         </div>
 
-        <SectionLabel text="空间" />
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {spaces.map((space, i) => (
-            <FadeIn key={space.name} delay={i * 0.05}>
-              <Link href={space.href} prefetch={false} className="block p-4 rounded-md transition-all duration-300 hover:scale-[1.02]"
-                style={{ background: space.palette, border: `1px solid ${space.accent}33` }}>
-                <p className="text-sm font-medium mb-1" style={{ color: space.accent }}>{space.name}</p>
-                <p className="text-xs" style={{ color: `${space.accent}bb` }}>{space.desc}</p>
-              </Link>
-            </FadeIn>
-          ))}
-        </div>
-
         <div style={{ height: "60px" }} />
+
+        <footer className="pt-8 mt-8" style={{ borderTop: "1px solid var(--sp-surface-border)" }}>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs" style={{ color: "var(--sp-muted)" }}>
+            <p>© 2026 Brunson · 武汉大学 → 中国科学技术大学</p>
+            <p>Last updated: 2026.05</p>
+          </div>
+        </footer>
       </div>
     </div>
   );

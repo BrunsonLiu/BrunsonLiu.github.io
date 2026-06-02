@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿"use client";
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿"use client";
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SlowIn, AccentLine } from "../components/space";
@@ -122,6 +122,9 @@ export default function LearningPage() {
         </SlowIn>
 
         <SlowIn delay={0.3}>
+          <p className="text-sm mb-6" style={{ color: "var(--sp-muted)", opacity: 0.7 }}>
+            更多学习记录在我的公众号 <span className="font-medium" style={{ color: "var(--sp-text)", opacity: 0.9 }}>「永远别说永远」</span>
+          </p>
           <input
             type="text"
             value={search}
