@@ -2,7 +2,7 @@ export const learningTopics = [
   {
     id: "optimization",
     name: "Optimization",
-    description: "组合优化、整数规划、启发式算法。",
+    description: "组合优化、整数规划、启发式算法。我的研究核心。",
     entries: [
       {
         id: "opt-1",
@@ -30,7 +30,7 @@ export const learningTopics = [
   {
     id: "machine-learning",
     name: "Machine Learning",
-    description: "深度学习、注意力机制、训练技巧。",
+    description: "深度学习、注意力机制、训练技巧。学习驱动求解方向。",
     entries: [
       {
         id: "ml-1",
@@ -58,7 +58,7 @@ export const learningTopics = [
   {
     id: "english",
     name: "English",
-    description: "学术写作、口语、专业词汇。",
+    description: "学术写作、口语、专业词汇。读论文必备。",
     entries: [
       {
         id: "en-1",
@@ -79,7 +79,7 @@ export const learningTopics = [
   {
     id: "linux",
     name: "Linux",
-    description: "服务器、Docker、命令行。实际工作中用的。",
+    description: "服务器、Docker、命令行。实验和部署都在这上面。",
     entries: [
       {
         id: "linux-1",
@@ -121,7 +121,7 @@ export const learningTopics = [
   {
     id: "first-principles",
     name: "First Principles",
-    description: "从基本事实出发，不依赖类比。",
+    description: "从基本事实出发，不依赖类比。看问题的方法。",
     entries: [
       {
         id: "fp-1",

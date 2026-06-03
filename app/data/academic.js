@@ -46,6 +46,7 @@ export const projects = [
 
 【实验】Prodhon CLRP基准 + 常州市分布式光伏地理数据。对比NSGA-II / SPEA2 / MOPSO / MOEA/D / Gurobi。在超体积(HV)、Pareto前沿覆盖度、收敛速度、求解稳定性上均显著优势。机场数量K敏感性分析揭示非线性影响与边际效益递减规律。`,
     image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=abstract%20aerial%20drone%20view%20of%20infrastructure%20inspection%2C%20dark%20blue%20background%2C%20minimal%20geometric%20lines%2C%20research%20paper%20illustration%20style&image_size=landscape_16_9",
+    link: "https://github.com/BrunsonLiu/Bachelor-Thesis",
   },
   {
     id: "ors",
@@ -63,6 +64,67 @@ export const projects = [
 
 【队长工作】协调建模/编程/论文三线并行，拆解赛题→分配模块→设定里程碑，每日早会同步进度识别阻塞点。`,
     image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=abstract%20supply%20chain%20network%2C%20cold%20chain%20logistics%2C%20warehouse%20optimization%2C%20dark%20background%2C%20geometric%20node%20connections&image_size=landscape_16_9",
+    link: "https://github.com/BrunsonLiu/OR_contest",
+  },
+  {
+    id: "rl-fjsp",
+    title: "RL_FJSP — 强化学习求解柔性作业车间调度",
+    subtitle: "Flexible Job Shop Scheduling Problem",
+    label: "开源项目",
+    period: "2026",
+    desc: "用强化学习求解 FJSP——FJSP 是组合优化里的经典问题，比 VRP 更复杂因为工序和机器同时耦合。从零搭建了完整流水线：Brandimarte MK 基准、调度合法性校验器、四种 RL 算法基线（REINFORCE / AC / Graph-AC / Graph-PPO）。",
+    tags: ["RL", "FJSP", "调度", "PyTorch"],
+    detail: `【背景】柔性作业车间调度问题(FJSP)是组合优化里的经典难题——每个工件的工序顺序固定，但每道工序可以在多台可用机器中选择加工。每种选择都会影响后续调度，需要在全局约束下同时决策"做什么"和"在哪做"。
+
+【基础设施】
+- FJSP 实例解析器。
+- 调度合法性校验器——必须满足工序优先级、机器容量、加工时间兼容性、每道工序恰好分配一次。
+- Brandimarte MK 基准数据集。
+- 贪心 smoke test 验证流水线。
+
+【算法演进】
+- REINFORCE 基线：最小可运行版本。
+- Two-stage Actor-Critic：在 dispatch policy 上分机器分配 + 工序选择两阶段决策。
+- Graph Actor-Critic：用图神经网络建模机器-工序关系。
+- Graph PPO：图结构 + PPO 算法，在 Brandimarte MK01-05 上跑基准对比。
+
+【项目意义】这是从 L2O 思路出发的工程实践——让模型学习调度策略替代手工设计的规则。代码全部开源，作为后续研究的基础。
+
+【代码】https://github.com/BrunsonLiu/RL_FJSP`,
+    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=abstract%20graph%20neural%20network%20topology%2C%20manufacturing%20scheduling%20nodes%20connected%20to%20machines%2C%20dark%20background%2C%20minimal%20scientific%20illustration&image_size=landscape_16_9",
+    link: "https://github.com/BrunsonLiu/RL_FJSP",
+  },
+  {
+    id: "age-of-discovery",
+    title: "大航海时代 — Age of Discovery",
+    subtitle: "React 航海策略游戏",
+    label: "兴趣项目",
+    period: "2026",
+    desc: "基于 React + TypeScript 的单机航海策略游戏——探索港口、组建舰队、跨洋贸易、遭遇历史事件。致敬 16-17 世纪大航海时代。",
+    tags: ["React", "TypeScript", "Leaflet", "游戏"],
+    detail: `【背景】出于对大航海时代的兴趣，做了一款单机策略游戏作为兴趣项目。
+
+【玩法】
+- 探索：基于 Leaflet 的交互式地图，发现隐藏港口。
+- 舰队管理：组建船队、招募水手、维护船只。
+- 跨洋贸易：不同港口间买卖商品，积累财富。
+- 海上冒险：风暴、海盗、坏血病等随机事件。
+- 历史事件：西班牙珍宝船队、达伽马航迹等真实场景。
+- 海洋奇遇：海豚护航、鲸群邂逅、流星雨之夜。
+
+【技术栈】
+- React 18 + TypeScript
+- Vite 6
+- Zustand 状态管理
+- Leaflet + react-leaflet 地图渲染
+- Tailwind CSS
+
+【意义】这个项目锻炼了完整的前端工程能力——从游戏状态机设计到地图交互，从路由到状态管理。也是第一次完整把一个项目从设计到部署跑通。
+
+【在线试玩】https://brunsonliu.github.io/Age-of-Discovery/
+【代码】https://github.com/BrunsonLiu/Age-of-Discovery`,
+    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=old%20wooden%20sailing%20ship%20in%20open%20ocean%2C%20sunset%2C%20nautical%20map%20aesthetic%2C%20warm%20tones%2C%20painterly%20style&image_size=landscape_16_9",
+    link: "https://brunsonliu.github.io/Age-of-Discovery/",
   },
 ];
 
@@ -111,12 +173,8 @@ export const internships = [
 
 【方向一：集成电路电路参数优化】
 传统人工调优效率低、多目标权衡难度大、仿真成本高。用SQL抽取仿真数据，Python完成数据清洗/标准化/可视化，参与开源优化框架工程化落地与接口封装，协助搭建电路优化实验平台。调研黑盒优化、强化学习等前沿技术。
-技术难点：高维黑盒、多约束多目标问题——通过约束嵌入、代理模型应用应对；仿真成本高——代理模型替代部分仿真降低评估成本。
-
-【方向二：半导体产能规划】
-传统人工决策易出错、流程不规范、评估周期长。协助完成算法逻辑实现、联调测试和版本上线，参与机台负载分配、资源匹配等核心功能的代码编写。
-技术难点：大规模决策求解、复杂关系建模——理解"规则+优化"的工程思路，将业务问题抽象为数学模型。`,
-    tags: ["集成电路", "黑盒优化", "产能规划", "Python"],
+技术难点：高维黑盒、多约束多目标问题——通过约束嵌入、代理模型应用应对；仿真成本高——代理模型替代部分仿真降低评估成本。`,
+    tags: ["集成电路", "黑盒优化", "Python"],
   },
   {
     id: "sibao",

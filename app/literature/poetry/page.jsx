@@ -70,6 +70,18 @@ const cardThemes = {
     gradient: "linear-gradient(160deg, #0a0a0a 0%, #1a0a1a 50%, #2a0a2a 100%)",
     image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=fallen%20petals%20on%20rainy%20courtyard%2C%20lonely%20pavilion%20under%20autumn%20moon%2C%20chinese%20ink%20painting%2C%20melancholic%20and%20elegant%20atmosphere%2C%20deep%20purple%20and%20silver%20tones%2C%20no%20people%2C%20no%20text&image_size=landscape_16_9",
   },
+  "杨慎": {
+    gradient: "linear-gradient(160deg, #0a0a0a 0%, #1a2030 40%, #2a3030 100%)",
+    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=grand%20yangtze%20river%20rushing%20eastward%2C%20white%20rapids%20and%20misty%20cliffs%2C%20morning%20sun%20breaking%20through%20clouds%2C%20epic%20scale%20chinese%20landscape%2C%20nostalgic%20historic%20atmosphere%2C%20no%20people%2C%20no%20text&image_size=landscape_16_9",
+  },
+  "朱敦儒": {
+    gradient: "linear-gradient(160deg, #0a0a0a 0%, #1a2a1a 50%, #2a3a2a 100%)",
+    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=secluded%20garden%20with%20flowering%20plum%20trees%2C%20wine%20cup%20and%20drifting%20petals%2C%20morning%20mist%2C%20traditional%20chinese%20ink%20painting%2C%20hermit%20poet%20atmosphere%2C%20soft%20jade%20and%20pink%20tones%2C%20no%20people%2C%20no%20text&image_size=landscape_16_9",
+  },
+  "晏几道": {
+    gradient: "linear-gradient(160deg, #0a0a1a 0%, #1a1a2a 50%, #2a1a3a 100%)",
+    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=moonlit%20tower%20with%20lowered%20silk%20curtains%2C%20drifting%20incense%20smoke%2C%20lotus%20pond%20at%20night%2C%20southern%20song%20dynasty%20lyric%20poetry%20atmosphere%2C%20sentimental%20and%20elegant%20mood%2C%20soft%20lavender%20and%20silver%20tones%2C%20no%20people%2C%20no%20text&image_size=landscape_16_9",
+  },
 };
 
 const DEFAULT_GRADIENT = "linear-gradient(160deg, #0a0a0a 0%, #1a1a2a 50%, #0a0a0a 100%)";

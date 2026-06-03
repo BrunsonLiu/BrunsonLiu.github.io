@@ -42,11 +42,18 @@ function ProjectModal({ project, onClose }) {
           <p className="text-sm mb-4" style={{ color: "var(--sp-accent)" }}>{project.subtitle}</p>
         )}
 
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap items-center gap-2 mb-6">
           {project.tags.map((tag) => (
             <span key={tag} className="text-xs px-2 py-0.5 rounded"
               style={{ color: "var(--sp-muted)", background: "var(--sp-surface-border)" }}>{tag}</span>
           ))}
+          {project.link && (
+            <a href={project.link} target="_blank" rel="noopener noreferrer"
+              className="text-xs px-3 py-1 rounded ml-auto transition-opacity duration-200 hover:opacity-70"
+              style={{ color: "var(--sp-accent)", border: "1px solid var(--sp-accent)33" }}>
+              {project.link.includes("github.com") ? "代码 ↗" : "试玩 ↗"}
+            </a>
+          )}
         </div>
 
         <div className="whitespace-pre-line text-sm leading-relaxed" style={{ color: "var(--sp-muted)" }}>
@@ -181,43 +188,41 @@ export default function HomePage() {
         </div>
 
         <SectionLabel text="项目" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-12">
           {projects.map((proj, i) => (
             <FadeIn key={proj.id} delay={i * 0.05}>
-              <div className="rounded-md cursor-pointer transition-all duration-200 hover:scale-[1.02] group overflow-hidden"
+              <div className="rounded-md cursor-pointer transition-all duration-200 hover:scale-[1.02] group overflow-hidden h-full flex flex-col"
                 style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)" }}
                 onClick={() => setSelectedProj(proj)}>
                 {proj.image && (
-                  <div className="w-full h-32 overflow-hidden" style={{ background: "var(--sp-surface-border)" }}>
+                  <div className="w-full h-20 overflow-hidden flex-shrink-0" style={{ background: "var(--sp-surface-border)" }}>
                     <img src={proj.image} alt={proj.title} className="w-full h-full object-cover"
                       onError={(e) => { e.currentTarget.style.display = "none"; }} />
                   </div>
                 )}
-                <div className="p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-bold tracking-[0.1em] px-2 py-0.5 rounded"
-                    style={{ color: "var(--sp-accent)", border: "1px solid var(--sp-accent)33" }}>
-                    {proj.label}
-                  </span>
-                  <span className="text-xs" style={{ color: "var(--sp-muted)" }}>{proj.period}</span>
-                </div>
-                <p className="text-base font-medium mb-1" style={{ color: "var(--sp-text)" }}>
-                  {proj.title}
-                </p>
-                {proj.subtitle && (
-                  <p className="text-sm mb-2" style={{ color: "var(--sp-accent)" }}>{proj.subtitle}</p>
-                )}
-                <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--sp-muted)" }}>
-                  {proj.desc}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {proj.tags.map((tag) => (
-                    <span key={tag} className="text-xs px-2 py-0.5 rounded"
-                      style={{ color: "var(--sp-muted)", background: "var(--sp-surface-border)" }}>{tag}</span>
-                  ))}
-                </div>
-                <p className="text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ color: "var(--sp-accent)" }}>点击查看详情 →</p>
+                <div className="px-3 py-3 flex flex-col flex-1">
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                    <span className="text-[10px] font-bold tracking-[0.1em] px-1.5 py-0.5 rounded"
+                      style={{ color: "var(--sp-accent)", border: "1px solid var(--sp-accent)33" }}>
+                      {proj.label}
+                    </span>
+                    <span className="text-xs" style={{ color: "var(--sp-muted)" }}>{proj.period}</span>
+                  </div>
+                  <p className="text-sm font-medium mb-0.5" style={{ color: "var(--sp-text)" }}>
+                    {proj.title}
+                  </p>
+                  {proj.subtitle && (
+                    <p className="text-xs mb-2" style={{ color: "var(--sp-accent)" }}>{proj.subtitle}</p>
+                  )}
+                  <p className="text-xs leading-relaxed mb-2 flex-1" style={{ color: "var(--sp-muted)" }}>
+                    {proj.desc}
+                  </p>
+                  <div className="flex flex-wrap gap-1">
+                    {proj.tags.map((tag) => (
+                      <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded"
+                        style={{ color: "var(--sp-muted)", background: "var(--sp-surface-border)" }}>{tag}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </FadeIn>
