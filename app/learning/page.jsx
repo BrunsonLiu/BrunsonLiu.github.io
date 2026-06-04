@@ -1,4 +1,4 @@
-﻿﻿"use client";
+﻿﻿﻿"use client";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SlowIn, AccentLine } from "../components/space";
@@ -59,12 +59,14 @@ function EntryCard({ entry, index }) {
           className="learn-entry-status"
           style={{
             color: statusColors[entry.status] || "var(--sp-muted)",
-            borderColor: (statusColors[entry.status] || "var(--sp-muted)") + "55",
           }}
         >
-          {statusLabels[entry.status] || entry.status}
+          · {statusLabels[entry.status] || entry.status}
         </span>
       </div>
+      {entry.concept && (
+        <h3 className="learn-entry-concept">{entry.concept}</h3>
+      )}
       <p className="learn-entry-insight">{entry.insight}</p>
       {entry.discovery && (
         <p className="learn-entry-discovery">→ {entry.discovery}</p>
@@ -244,9 +246,12 @@ export default function LearningPage() {
 
                   <div className="learn-topic-preview">
                     <span className="learn-topic-preview-label">最新 · {latestEntry.date}</span>
+                    {latestEntry.concept && (
+                      <p className="learn-topic-preview-concept">{latestEntry.concept}</p>
+                    )}
                     <p className="learn-topic-preview-text">
-                      {latestEntry.insight.length > 100
-                        ? latestEntry.insight.slice(0, 100) + "…"
+                      {latestEntry.insight.length > 90
+                        ? latestEntry.insight.slice(0, 90) + "…"
                         : latestEntry.insight}
                     </p>
                   </div>

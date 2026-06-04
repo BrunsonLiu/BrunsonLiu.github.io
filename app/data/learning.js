@@ -7,6 +7,7 @@ export const learningTopics = [
       {
         id: "opt-1",
         date: "2026.05",
+        concept: "Column Generation",
         insight: "Column generation 是求解大规模线性规划的技术。核心思路：很多问题的变量数量爆炸（如 VRP 中所有可能的路径），显式枚举不可能。但大部分变量在最优解中取值都是 0 ——根本不需要生成他们。CG 每次只生成能让 reduced cost 变负的列，逐步逼近最优解，直到没有这样的列存在为止。这本质上是一种 lazy evaluation：不枚举所有变量，只在需要的时候生成。Branch-and-price 在每个分支节点都跑一遍 CG，把 CG 嵌入了分支定界框架。CG 是子程序，B&P 是整个框架。两者都依赖问题的特殊结构（通常是 Dantzig-Wolfe decomposition 把原问题重构为 set partitioning formulation）。实际实现时最痛苦的不是算法本身，是 pricing problem 的建模——每个问题都不一样，需要深刻理解原问题的结构才能写出高效的 pricing。",
         discovery: "这和 RL 里的 action space pruning 思路很像：巨大解空间中动态生成候选解，而不是枚举。在 LNS（大邻域搜索）中也是类似——destroy 破坏一部分解，repair 生成新的局部解，只在有限的邻域内搜索。三个不同的领域，都在解决同一个问题：解空间太大，枚举不了。",
         status: "exploring",
@@ -14,6 +15,7 @@ export const learningTopics = [
       {
         id: "opt-2",
         date: "2026.04",
+        concept: "VRP 变体的本质",
         insight: "学 VRP 的时候发现一个规律：二十多种 VRP 变体，差别听起来很大（带时间窗、带回程、带取送货、多车场……），但本质上就是约束的不同组合方式。真正重要的是理解每种约束如何改变 cost-to-go 的结构。比如 CVRP 加容量约束，导致一辆车装不下的客户必须分给多辆车——这不是简单的分区问题，因为客户之间的相对位置和容量需求同时影响最优划分。再比如 VRPTW 加时间窗，约束变成了时间上的先后顺序必须可满足——加上容量约束后就是「空间+时间」的双重约束，解的结构完全变了。所以学 VRP 不要背变体，要理解约束如何影响 search space 的拓扑结构。从这个角度出发，建模时从决策变量 → 约束 → 目标函数层层推进，比从问题分类出发更不容易遗漏关键约束。",
         discovery: "做文献综述时先把所有变体列出来，然后映射到统一的数学框架里——会发现大部分差异只是一个参数或一个 penalty term 的不同。这比读二十篇论文有效得多。",
         status: "understood",
@@ -21,6 +23,7 @@ export const learningTopics = [
       {
         id: "opt-3",
         date: "2026.03",
+        concept: "Lagrangian Relaxation",
         insight: "Lagrangian relaxation 的思路很直接但很好用：有些约束让问题变得难（比如把几个子问题耦合在一起的约束），那就把这些约束「松弛」掉——不要求必须满足，但违反要付出代价（Lagrange multiplier×违反量）。松弛后的目标函数变成了原目标 + 惩罚项。关键性质：对任意非负乘子，松弛问题的最优值是原问题的一个下界（最小化问题）。然后通过更新乘子来逼近原问题最优值，这就是 subgradient method 做的事。Lagrangian relaxation 不是万能的——如果松弛后的问题不好解，那就白松弛了。它的威力取决于问题结构的可分解性：松弛耦合约束后，如果能分解为多个独立的易解子问题，那就很值。这相当于把约束从「必须满足」变成「尽量满足」，把难问题松弛成易问题。和 linear programming relaxation 的区别：LP 松弛是连续化了离散变量，Lagrangian 松弛是软化约束但保留结构——前者可能丢失组合结构，后者保留了子问题的结构特征。",
         discovery: "",
         status: "understood",
@@ -35,6 +38,7 @@ export const learningTopics = [
       {
         id: "ml-1",
         date: "2026.05",
+        concept: "Attention 计算过程",
         insight: "彻底搞懂了 Attention 的计算过程。输入是一堆 token 的向量表示。每个 token 生成三个向量：Query（我要找什么）、Key（我有什么）、Value（我实际包含的信息）。计算步骤：① Q 和所有 K 做点积得到相似度分数，除以 sqrt(d_k) 防止点积过大导致 softmax 梯度消失；② softmax 归一化成权重；③ 权重加权求和 V 得到输出。Multi-head 就是并行做多次，每次用不同的投影矩阵，让不同 head 关注不同的关系模式（如一个关注语法，一个关注语义）。Self-attention 就是 Q、K、V 都来自同一序列——序列中每个位置都 attend 到所有位置。Cross-attention 是 Q 来自 decoder，K、V 来自 encoder，用于 seq2seq 的解码。复杂度 O(n²·d) 是最大软肋——序列长 100k 时矩阵就爆了，所以有了各种 sparse/flash attention 消减复杂度。",
         discovery: "Attention 的 Q-K-V 框架和 LNS 中 destroy 算子「选择破坏哪里」有结构上的相似性。Q 就是当前状态对「需要关注什么」的查询，K 是每个节点「我是一个什么样的节点」的标识，匹配度决定是否摧毁这个区域。虽然机制完全不同（一个是神经网络一个是启发式），但「动态选择关注区域」的思路是共通的。",
         status: "exploring",
@@ -42,6 +46,7 @@ export const learningTopics = [
       {
         id: "ml-2",
         date: "2026.04",
+        concept: "Generalization Gap 与 OOD 泛化",
         insight: "看了一系列关于 generalization gap 的论文。核心发现：深度模型在分布外(out-of-distribution)测试集上的性能大幅下降，但这不能简单说 overfitting——训练集和测试集噪声不同、分布不同、甚至标签生成机制不同。模型学到的是一种混合体：一部分是真实的、可泛化的模式，一部分是训练分布特有的虚假关联(spurious correlation)。比如图像分类中，如果训练集里「骆驼」总是出现在沙漠背景中，模型可能学到的不是骆驼的特征而是沙漠的特征。这种虚假关联在分布外测试时会失效。问题的根源不是模型容量太大，而是数据本身包含了分布特定的捷径。解决方法：数据增强打破虚假关联、domain randomization 多样化背景、causal representation learning 从因果角度分离表示。但说实话，目前没有彻底解决的方案——这是个开放问题。",
         discovery: "",
         status: "exploring",
@@ -49,6 +54,7 @@ export const learningTopics = [
       {
         id: "ml-3",
         date: "2026.03",
+        concept: "优化器发展脉络",
         insight: "复习了优化器的发展脉络。SGD：每次用一个小批量估计梯度，沿负梯度方向走一步。问题在于步长固定——太小收敛慢，太大在 narrow valley 里震荡。Momentum：给梯度加惯性，累积过去的梯度方向，相当于一个指数移动平均。能加速穿越平坦区域和窄谷。RMSprop 和 AdaGrad：自适应调整每个参数的学习率——梯度大的参数减小步长，梯度小的增大步长。Adam 结合了 Momentum 和 RMSprop：一阶矩估计梯度方向，二阶矩估计梯度大小来自适应缩放。AdamW 进一步把 weight decay 从 L2 regularization 中分离出来——weight decay 直接作用于权重而非通过梯度间接影响，这是 Adam 原始实现的一个 bug fix。实际使用中 AdamW 基本是默认首选，但调参玄学仍然存在——learning rate warmup、gradient clipping、batch size 之间的联动效应远没有理论上的统一解释。",
         discovery: "单纯形法和梯度下降走的是完全不同的路：单纯形法在多面体顶点间跳跃，梯度下降在内部连续移动。一个离散一个连续，但都在找最优。这种对比思路能帮理解两种范式的优缺点。",
         status: "understood",
@@ -63,6 +69,7 @@ export const learningTopics = [
       {
         id: "en-1",
         date: "2026.05",
+        concept: "英文思维的切换",
         insight: "最近感觉到一个明显的质变：做数学推导时的内心独白开始自然用英文了。比如推导 VRP 的 Lagrangian relaxation 时，脑子里想的是 'we relax the coupling constraints and penalize violations'，而不是先想中文再翻译。这种思维层面的切换比任何考试成绩更能说明进步。达到这个状态的方法其实不复杂：① 读英文教材和论文时不要试图「理解后翻译成中文」，直接用英文理解，遇到不懂的词先猜再查，保持英文思维流；② 写技术笔记时强迫自己用英文——哪怕句式笨拙，但写的过程就是组织英语思维的过程；③ 找技术播客（比如 TWiML、Lex Fridman）通勤时听，不用全听懂，让大脑习惯英文技术表达的节奏。三个月见效。",
         discovery: "听播客时重点关注说话者的断句和语气变化——这些节奏比单词本身更决定听起来是否自然。native speaker 的节奏和我们习惯的「单词-单词-单词」完全不同，他们是在「短语-短语-短语」的层面组织语言的。",
         status: "applying",
@@ -70,6 +77,7 @@ export const learningTopics = [
       {
         id: "en-2",
         date: "2026.04",
+        concept: "中英学术写作的结构差异",
         insight: "读了几本关于学术写作的书（Style: Lessons in Clarity and Grace, Writing Science），最大的收获是：中文学术写作和英文学术写作在段落结构上有根本性差异。中文论文习惯「铺垫-背景-问题-方法-结果」的层层推进，有时候铺垫会很长。英文论文强调「倒金字塔」——第一句就给核心信息（topic sentence），后面展开支撑。过渡句在英文中的功能不是装饰，而是逻辑连接器——读者通过过渡句理解两个段落之间的因果关系、转折关系、递进关系。另一个差异是英文论文的被动语态使用频率远高于中文——不是语法练习，而是学术规范：强调研究对象而非研究者。比如 'We solved the problem using CPLEX' 在中文语境很自然，但在英文顶刊里更常见的写法是 'The problem was solved using CPLEX'。注意到这一点后，再读英文论文时重点看每个段落的 topic sentence 和段落间的过渡词，发现写作结构变得清晰多了。",
         discovery: "一个实用的学习方法：找一篇和你研究方向相同的高引论文，逐段分析它的 paragraph structure——每个段落的 topic sentence 在哪，段落间怎么过渡的，论证逻辑的推进方式。然后模仿这个结构写自己的东西。比泛读十篇更有效。",
         status: "applying",
@@ -84,6 +92,7 @@ export const learningTopics = [
       {
         id: "linux-1",
         date: "2026.05",
+        concept: "GPU 服务器 + 后台训练",
         insight: "GPU 服务器常用命令：`nvidia-smi` 看显存、GPU利用率、进程PID；`watch -n 1 nvidia-smi` 每秒刷新；`fuser -v /dev/nvidia*` 反向查谁在占用GPU；`kill -9 $(nvidia-smi | grep python | awk '{print $5}')` 一键杀所有python进程。后台训练：`nohup python train.py > log.txt 2>&1 &`——nohup防终端断开后进程终止，2>&1把stderr也重定向（忘了stderr会丢失错误信息），&放后台。`jobs -l` 查看后台任务，`fg %1` 拿回前台。",
         discovery: "tmux比nohup更灵活——ctrl+b d脱离但进程继续跑，随时attach回去看进展。多window可以同时跑多个实验，比开多个终端高效。",
         status: "applying",
@@ -91,6 +100,7 @@ export const learningTopics = [
       {
         id: "linux-2",
         date: "2026.04",
+        concept: "Docker 核心要点",
         insight: "Docker核心价值是环境复现，不是虚拟化。`docker build -t myapp .` 构建镜像，`docker run --gpus all -it myapp bash` 启动GPU容器，`docker exec -it container_id bash` 进入运行中的容器。Docker Compose一键启动多容器（app+数据库），用YAML配置网络依赖。清理：`docker system prune -a` 清所有无用资源，`docker volume prune` 清volume。踩坑：docker exec进容器改了代码不生效——检查volume挂载顺序，后挂载覆盖先挂载。",
         discovery: "`.dockerignore` 排除 `node_modules`、`__pycache__`，大幅减少build context体积和构建时间。",
         status: "applying",
@@ -98,6 +108,7 @@ export const learningTopics = [
       {
         id: "linux-3",
         date: "2026.03",
+        concept: "SSH 与文件传输",
         insight: "SSH免密登录：`ssh-keygen -t ed25519` 生成密钥，`ssh-copy-id user@server` 拷贝公钥。端口转发：`ssh -L 8888:localhost:8888 user@server`，远程jupyter在本地浏览器打开。文件传输：`scp -r ./project user@server:~/workspace/` 全量拷贝，`rsync -avz --progress ./data/ user@server:~/data/` 增量同步（只传改动文件，大目录快很多）。",
         discovery: "rsync的 `--exclude` 跳过不需要的目录（.git、数据集）。写一个bash脚本 `rsync-backup.sh` 就能一键备份实验数据。",
         status: "applying",
@@ -105,6 +116,7 @@ export const learningTopics = [
       {
         id: "linux-4",
         date: "2026.02",
+        concept: "文本处理三剑客",
         insight: "文本处理三剑客：grep找内容，awk处理列，sed批量替换。`grep 'error' log.txt | wc -l` 统计错误数，`awk '{print $1}' access.log | sort | uniq -c | sort -rn | head` IP访问排行，`sed -i 's/old/new/g' config.yaml` 批量替换。CSV处理：`cut -d',' -f1,3 data.csv` 提取列，`sort -t',' -k2 -n data.csv` 按第2列数值排序。大文件用`less`不用`cat`——cat一次性读整个文件进内存，less流式读取，支持/G跳转、/keyword搜索、:N跳行。",
         discovery: "awk的BEGIN/END块可做初始化和汇总。一行管道搞定「读日志→过滤→统计→输出」全流程，比写Python脚本快。",
         status: "understood",
@@ -112,6 +124,7 @@ export const learningTopics = [
       {
         id: "linux-5",
         date: "2026.01",
+        concept: "常用命令踩坑",
         insight: "crontab踩坑：运行环境和交互式shell完全不同——PATH不同、没加载.bashrc、workdir是home。脚本里必须用绝对路径（`/usr/bin/python3` 而非 `python`），先cd到正确目录。`chmod 600 ~/.ssh/id_rsa` SSH密钥必须600权限否则拒绝连接。`chown -R user:group /path` 改所有者。`ln -s /data/models ~/models` 软链接不用占空间。`df -h` 查磁盘使用。坑：rm -rf路径里有变量时空变量会导致`rm -rf /*`，先ls确认路径再用set -euo pipefail。",
         discovery: "crontab加一行 `MAILTO=''` 避免出错时塞满信箱。`crontab -l` 列出，`crontab -e` 编辑。find实用组合：`find / -name '*.py' -mtime -7` 找7天内改的py文件，`find . -type f -size +100M` 找大文件，`du -sh * | sort -rh | head -10` 当前目录占用Top10。",
         status: "applying",
@@ -126,6 +139,7 @@ export const learningTopics = [
       {
         id: "fp-1",
         date: "2026.05",
+        concept: "第一性原理方法",
         insight: "第一性原理思考的方法是：把问题拆到不能再拆的基础事实，然后从这些事实出发重新推导。类比（'这个像那个'）是高效的捷径，但问题在于你会继承别人的前提假设——可能这些假设在你的场景下并不成立。比如学 VRP 的时候，大多数人默认用「先聚类再路由」（cluster-first route-second）的框架，因为几十年前的研究这么说。但如果从第一性原理出发问：VRP 的解空间结构是什么？聚类和路由的耦合关系如何？你会发现 CVRP 中聚类和路由强耦合——聚类的质量取决于路由成本，反之亦然。所以分步求解天然次优。这就是为什么 joint optimization 比两阶段方法好——不是直觉，是从问题结构反推出来的。马斯克拆解火箭成本的经典案例：火箭售价 6500 万，原材料（铝、钛、铜、燃料）市场价加起来只有售价的 2%。如果从原材料出发自己造零件再组装，成本可以降到原来的几十分之一。这不是天才，是算账——把价格拆到原材料层面再重新估价。",
         discovery: "",
         status: "understood",
@@ -133,6 +147,7 @@ export const learningTopics = [
       {
         id: "fp-2",
         date: "2026.04",
+        concept: "第一性原理与 L2O / LRP",
         insight: "把第一性原理用到自己的研究方向后，思路清晰了很多。VRP 求解的传统第一性原理：组合优化问题的计算复杂度来自解空间的组合爆炸。所以传统的应对是设计启发式规则剪枝搜索空间。但为什么是人工设计规则？因为在深度学习普及之前，没有更好的方法来「学习」规则。现在有了。所以第一性原理推导出来的结论是：与其手工设计规则，不如让模型从复杂的问题结构中学习求解策略。这恰好是 L2O 的核心——不是新瓶装旧酒，是技术条件变化后从问题本质重新推导出来的解法。具体到我的毕设：无人机巡检的 LRP——传统「先选址后路径」两步走是第一性原理没做透的表现。从根本上看，选址和路径在 LRP 中是强耦合：选址决定了哪些节点分配给哪个机场，分配决定了路径长度，路径长度又反过来说明了选址是否合理。所以正确的第一性原理方法是一体化建模——MILP 把选址、分配、路径一次性表达。",
         discovery: "这个方法的好处是：推导出来的解法有内在的逻辑自洽性。答辩时不会被问「为什么不用两阶段方法」——因为你的建模已经回答了这个问题。",
         status: "applying",
@@ -140,6 +155,7 @@ export const learningTopics = [
       {
         id: "fp-3",
         date: "2026.03",
+        concept: "挑战隐含假设",
         insight: "实践第一性原理最重要的技巧：把「理所当然」的假设列出来，逐个挑战。怎么做：① 列出你的当前方案所依赖的所有隐含假设（「问题必须这样建模」、「这个约束不可放松」、「这个算法只能用在这些场景」）；② 对每个假设问「这是必然的吗？如果这个假设不成立呢？」；③ 挑战最底层的那些——更深层的假设被推翻时，上层会连锁崩塌。举个例子：深度学习需要大量标注数据 → 这个假设的底层是「监督信号必须来自人工标注」。但如果监督信号可以来自数据本身呢？这就是自监督学习的起点。再比如训练需要大量计算资源 → 但如果不需要从零训练呢？这就是预训练+微调的起点。做决策时把所有选项列出来——包括看起来荒谬的。荒谬的选项往往是唯一被惯性排除的第一性原理解。SpaceX 用不锈钢造 Starship 的成本远低于碳纤维复合材料——不锈钢在大多数人眼里是「低端材料」，但从第一性原理看：耐高温（不需要烧蚀热防护）、便宜、易焊接、低温下强度反而提高。很多看起来荒谬的选项，只是被行业惯性排除掉了。",
         discovery: "",
         status: "applying",

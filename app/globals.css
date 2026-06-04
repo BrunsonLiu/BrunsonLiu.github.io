@@ -1510,51 +1510,77 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .learn-entry {
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--sp-surface-border);
-  border-radius: 10px;
-  transition: border-color 0.2s;
+  padding: 1.25rem 0;
+  margin-bottom: 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--sp-surface-border);
+  border-radius: 0;
+  transition: opacity 0.2s;
 }
-.learn-entry:last-child { margin-bottom: 0; }
-.learn-entry:hover {
-  border-color: rgba(255,255,255,0.08);
-}
+.learn-entry:last-child { border-bottom: 0; }
+.learn-entry:hover { opacity: 0.85; }
 
 .learn-entry-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.75rem;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .learn-entry-date {
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  color: var(--sp-muted);
+  letter-spacing: 0.12em;
+  color: var(--sp-accent);
+  text-transform: uppercase;
 }
 
 .learn-entry-status {
   font-size: 0.625rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.08em;
+  color: var(--sp-muted);
+  opacity: 0.7;
 }
 
 .learn-entry-insight {
-  font-size: 0.875rem;
-  line-height: 1.75;
+  font-size: 0.9375rem;
+  line-height: 1.85;
   color: var(--sp-text);
   letter-spacing: 0.01em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-reading);
+}
+
+.learn-entry-concept {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--sp-text);
+  margin: 0 0 0.65rem;
+  line-height: 1.4;
+  font-family: var(--font-reading);
+}
+
+.learn-topic-preview-concept {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--sp-text);
+  margin: 0.4rem 0 0.35rem;
+  letter-spacing: 0.01em;
+  font-family: var(--font-reading);
 }
 
 .learn-entry-discovery {
-  font-size: 0.8125rem;
-  line-height: 1.7;
-  color: var(--sp-accent);
-  opacity: 0.8;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--sp-muted);
+  opacity: 0.85;
+  padding-left: 1rem;
+  border-left: 2px solid var(--sp-accent);
+  margin-top: 0.75rem;
   font-style: italic;
 }
 
