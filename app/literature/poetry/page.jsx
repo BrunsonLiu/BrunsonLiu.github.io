@@ -82,6 +82,10 @@ const cardThemes = {
     gradient: "linear-gradient(160deg, #0a0a1a 0%, #1a1a2a 50%, #2a1a3a 100%)",
     image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=moonlit%20tower%20with%20lowered%20silk%20curtains%2C%20drifting%20incense%20smoke%2C%20lotus%20pond%20at%20night%2C%20southern%20song%20dynasty%20lyric%20poetry%20atmosphere%2C%20sentimental%20and%20elegant%20mood%2C%20soft%20lavender%20and%20silver%20tones%2C%20no%20people%2C%20no%20text&image_size=landscape_16_9",
   },
+  "秦观": {
+    gradient: "linear-gradient(160deg, #0a0a1a 0%, #1a0a2a 50%, #2a0a2a 100%)",
+    image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=magpie%20bridge%20over%20milky%20way%20at%20night%2C%20two%20lovers%20meeting%20among%20stars%2C%20autumn%20moon%20and%20silver%20clouds%2C%20romantic%20and%20ethereal%20chinese%20landscape%2C%20soft%20purple%20and%20silver%20tones%2C%20no%20people%2C%20no%20text&image_size=landscape_16_9",
+  },
 };
 
 const DEFAULT_GRADIENT = "linear-gradient(160deg, #0a0a0a 0%, #1a1a2a 50%, #0a0a0a 100%)";
