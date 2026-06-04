@@ -84,6 +84,14 @@ function ExpandableBlock({ item, i }) {
         <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: "var(--sp-muted)" }}>
           {open ? item.detail : preview}
         </p>
+        {item.tags && item.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1 mt-2">
+            {item.tags.map((tag) => (
+              <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded"
+                style={{ color: "var(--sp-muted)", background: "var(--sp-surface-border)" }}>{tag}</span>
+            ))}
+          </div>
+        )}
         {isLong && (
           <span className="inline-block mt-1 text-xs" style={{ color: "var(--sp-accent)" }}>
             {open ? "收起 ▲" : "展开 ▼"}
@@ -240,22 +248,6 @@ export default function HomePage() {
         <div className="mb-12">
           {internships.map((intern, i) => (
             <ExpandableBlock key={intern.id} item={intern} i={i} />
-          ))}
-        </div>
-
-        <SectionLabel text="技术栈" />
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
-          {Object.entries(skills).map(([category, items], i) => (
-            <FadeIn key={category} delay={i * 0.05}>
-              <p className="text-sm font-medium mb-2" style={{ color: "var(--sp-text)" }}>{category}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {items.map((item) => (
-                  <span key={item} className="text-xs px-2 py-1" style={{ background: "var(--sp-surface)", border: "1px solid var(--sp-surface-border)", color: "var(--sp-muted)" }}>
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </FadeIn>
           ))}
         </div>
 
